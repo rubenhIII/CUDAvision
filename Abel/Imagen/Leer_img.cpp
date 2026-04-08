@@ -1,11 +1,11 @@
 /*
- * leer_imagen.c
- *
- * Lee una imagen (PNG, JPG, BMP, TGA...) con stb_image y muestra su info.
- * También guarda una copia en output_copia.png para verificar que se leyó bien.
- *
+ leer_imagen.c
+ 
+ Lee una imagen (PNG, JPG, BMP, TGA...) con stb_image y muestra su info.
+ También guarda una copia en output_copia.png para verificar que se leyó bien.
+ 
  Compilar:
-   gcc leer_imagen.c -o leer_imagen -lm
+   gcc leer_imagen.c -o leer_imagen 
  
  Ejecutar:
    ./leer_imagen mi_foto.png
