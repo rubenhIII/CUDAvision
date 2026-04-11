@@ -1,5 +1,14 @@
 #include "image_tools.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
 
+//#define STB_IMAGE_WRITE_IMPLEMENTATION
+#define STB_IMAGE_IMPLEMENTATION
+//#include "stb_image_write.h"
+#include "stb_image.h"
+
+#include "fenster.h"
 
 unsigned char** image_zeros(int width, int height)
 {
@@ -76,8 +85,44 @@ unsigned char** image_rgb_channel(unsigned char *rgb_vector, int vec_size, int w
 
 unsigned char* image_rgb_to_vector(unsigned char **r, unsigned char **g, unsigned char **b, int width, int height)
 {
-    unsigned char *rgb_vector = (unsigned char *) malloc (sizeof(unsigned char) * 3 * width, height);
+    unsigned char *rgb_vector = (unsigned char *) malloc (sizeof(unsigned char) * 3 * width * height);
+    
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            rgb_vector[i * 3 * height + j * 3 + 0] = r[i][j];
+            rgb_vector[i * 3 * height + j * 3 + 1] = g[i][j];
+            rgb_vector[i * 3 * height + j * 3 + 2] = b[i][j];
+        }
+    }
 
     return rgb_vector;
+}
 
+unsigned char* image_load(const char* filename, int *width, int *height, int *channels)
+{
+    unsigned char *image = stbi_load(filename, width, height, channels, 0);
+    return image;
+}
+    
+void image_show(unsigned char *rgb_vector, int width, int height)
+{
+    unsigned int r, g, b;
+    unsigned int buf[width * height];
+    struct fenster f = { .title = "CUDAvision", .width = width, .height = height, .buf = buf };
+    fenster_open(&f);
+    while (fenster_loop(&f) == 0) {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+
+                // rgb_vector[(y * width + x) * channels + c]
+                int idx = (j * width + i) * 3;
+
+                r = rgb_vector[idx + 0] << 16;
+                g = rgb_vector[idx + 1] << 8;
+                b = rgb_vector[idx + 2];
+                fenster_pixel(&f, i, j) = r | g | b;
+            }
+        }
+    }
+    fenster_close(&f);
 }
