@@ -24,11 +24,13 @@ int main()
     //else printf("There was an error in conversion");
 
     int width, height, channels;
-    unsigned char *lena;
+    unsigned char *lena, *lena_gray;
     lena = image_load("lena.jpeg", &width, &height, &channels);
-    image_show(lena, width, height);
+    lena_gray = image_to_gray_vector(lena, width, height);
+    image_show(lena_gray, width, height);
 
     free(lena);
+    free(lena_gray);
 
     return 0;
 }

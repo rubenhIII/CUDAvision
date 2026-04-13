@@ -58,6 +58,28 @@ unsigned char** image_to_gray(unsigned char **r, unsigned char **g, unsigned cha
     return image_gray;
 }
 
+unsigned char* image_to_gray_vector(unsigned char *image, int width, int height)
+{
+    // Grayscale Luminosity formula
+    // gray = 0.21 * R + 0.72 * G + 0.07 * B
+    // Evitando el punto flotante (77 * image[idx + 0] + 150 * image[idx + 1] + 29 * image[idx + 2]) >> 8;
+    if (!image) return NULL;
+    unsigned char *gray_vector = (unsigned char *) malloc (sizeof(unsigned char) * 3 * width * height);
+    unsigned char gray;
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            int idx = (j * width + i) * 3;
+
+            gray = (77 * image[idx + 0] + 150 * image[idx + 1] + 29 * image[idx + 2]) >> 8;
+
+            gray_vector[idx + 0] = gray;
+            gray_vector[idx + 1] = gray;
+            gray_vector[idx + 2] = gray;
+        }
+    }
+    return gray_vector;
+}
+
 unsigned char** image_rgb_channel(unsigned char *rgb_vector, int vec_size, int width, int height, const char channel)
 {
     if (vec_size / 3 != width * height) {
@@ -76,7 +98,7 @@ unsigned char** image_rgb_channel(unsigned char *rgb_vector, int vec_size, int w
 
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
-            image_channel[i][j] = rgb_vector[(i * 3 * height) + j * 3 + index];
+            image_channel[i][j] = rgb_vector[(j * 3 * height) + i * 3 + index];
         }
     }
 
@@ -89,9 +111,11 @@ unsigned char* image_rgb_to_vector(unsigned char **r, unsigned char **g, unsigne
     
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
-            rgb_vector[i * 3 * height + j * 3 + 0] = r[i][j];
-            rgb_vector[i * 3 * height + j * 3 + 1] = g[i][j];
-            rgb_vector[i * 3 * height + j * 3 + 2] = b[i][j];
+
+            int idx = (j * width + i) * 3;
+            rgb_vector[idx + 0] = r[i][j];
+            rgb_vector[idx + 1] = g[i][j];
+            rgb_vector[idx + 2] = b[i][j];
         }
     }
 
