@@ -11,5 +11,6 @@ unsigned char** image_rgb_channel(unsigned char *rgb_vector, int vec_size, int w
 unsigned char* image_rgb_to_vector(unsigned char **r, unsigned char **g, unsigned char **b, int width, int height);
 unsigned char* image_load(const char* filename, int *width, int *height, int *channels);
 void image_show(unsigned char *rgb_vector, int width, int height);
+unsigned int* image_hist(unsigned char *gray_image, int width, int height);
 
 #endif
