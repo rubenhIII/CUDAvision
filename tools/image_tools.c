@@ -10,6 +10,8 @@
 
 #include "fenster.h"
 
+#define BIT_DEPTH 255
+
 unsigned char** image_zeros(int width, int height)
 {
     unsigned char** image = (unsigned char **) malloc (sizeof(unsigned char *) * height);
@@ -131,7 +133,8 @@ unsigned char* image_load(const char* filename, int *width, int *height, int *ch
 void image_show(unsigned char *rgb_vector, int width, int height)
 {
     unsigned int r, g, b;
-    unsigned int buf[width * height];
+    //unsigned int buf[width * height];
+    unsigned int *buf = (unsigned int *) malloc (sizeof(unsigned int) * width * height);
     struct fenster f = { .title = "CUDAvision", .width = width, .height = height, .buf = buf };
     fenster_open(&f);
     while (fenster_loop(&f) == 0) {
@@ -148,5 +151,13 @@ void image_show(unsigned char *rgb_vector, int width, int height)
             }
         }
     }
+    free(buf);
     fenster_close(&f);
+}
+
+unsigned int* image_hist(unsigned char *gray_image, int width, int height)
+{
+    unsigned int *hist = (unsigned int *) malloc (sizeof(unsigned int) * BIT_DEPTH);
+    for (int i = 0; i < width * height; i++) hist[i]++;
+    return hist;
 }

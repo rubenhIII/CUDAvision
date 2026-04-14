@@ -15,6 +15,9 @@ int main()
     unsigned char *lena, *lena_gray;
 
     lena = image_load("img/lena.jpeg", &width, &height, &channels);
+
+    printf("Image loaded: width: %d height: %d", width, height);
+
     lena_gray = image_to_gray_vector(lena, width, height);
     image_show(lena_gray, width, height);
 
