@@ -158,6 +158,13 @@ void image_show(unsigned char *rgb_vector, int width, int height)
 unsigned int* image_hist(unsigned char *gray_image, int width, int height)
 {
     unsigned int *hist = (unsigned int *) malloc (sizeof(unsigned int) * BIT_DEPTH);
-    for (int i = 0; i < width * height; i++) hist[i]++;
+    int index = 0;
+
+    int min_flag=0, max_flag=0;
+    for (int i = 0; i < width * height; i++) {
+        index = gray_image[i];
+        hist[index]++;
+    }
+
     return hist;
 }

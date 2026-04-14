@@ -13,16 +13,22 @@ int main()
 
     int width, height, channels;
     unsigned char *lena, *lena_gray;
+    unsigned int *hist;
 
     lena = image_load("img/lena.jpeg", &width, &height, &channels);
 
-    printf("Image loaded: width: %d height: %d", width, height);
+    printf("Image loaded: width: %d height: %d\n", width, height);
 
     lena_gray = image_to_gray_vector(lena, width, height);
     image_show(lena_gray, width, height);
+    hist = image_hist(lena_gray, width, height);
+
+    for (int i = 0; i < 255; i++)
+        printf("%d ", hist[i]);
 
     free(lena);
     free(lena_gray);
+    free(hist);
 
     return 0;
 }
