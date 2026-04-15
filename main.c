@@ -15,17 +15,14 @@ int main()
     unsigned char *lena, *lena_gray;
     float *hist;
 
-    lena = image_load("img/lena.jpeg", &width, &height, &channels);
+    lena = image_load("img/iglesia.jpg", &width, &height, &channels);
 
-    printf("Image loaded: width: %d height: %d\n", width, height);
+    printf("Image loaded: width: %d height: %d channels: %d\n", width, height, channels);
 
     lena_gray = image_to_gray_vector(lena, width, height);
     image_show(lena_gray, width, height);
+    
     hist = image_hist_norm(lena_gray, width, height);
-
-    //for (int i = 0; i < BIT_DEPTH; i++)
-    //    printf("%.4f ", hist[i]);
-
     unsigned int threshold = otsu_thresholding(hist);
     printf("Best threshold at: %d \n", threshold);
 

@@ -66,10 +66,12 @@ unsigned char* image_to_gray_vector(unsigned char *image, int width, int height)
     // Evitando el punto flotante (77 * image[idx + 0] + 150 * image[idx + 1] + 29 * image[idx + 2]) >> 8;
     if (!image) return NULL;
     unsigned char *gray_vector = (unsigned char *) malloc (sizeof(unsigned char) * 3 * width * height);
+    if (!gray_vector) return NULL;
     unsigned char gray;
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            int idx = (j * width + i) * 3;
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+
+            int idx = (y * width + x) * 3;
 
             gray = (77 * image[idx + 0] + 150 * image[idx + 1] + 29 * image[idx + 2]) >> 8;
 
@@ -132,21 +134,20 @@ unsigned char* image_load(const char* filename, int *width, int *height, int *ch
 void image_show(unsigned char *rgb_vector, int width, int height)
 {
     unsigned int r, g, b;
-    //unsigned int buf[width * height];
     unsigned int *buf = (unsigned int *) malloc (sizeof(unsigned int) * width * height);
     struct fenster f = { .title = "CUDAvision", .width = width, .height = height, .buf = buf };
     fenster_open(&f);
     while (fenster_loop(&f) == 0) {
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
 
                 // rgb_vector[(y * width + x) * channels + c]
-                int idx = (j * width + i) * 3;
+                int idx = (y * width + x) * 3;
 
                 r = rgb_vector[idx + 0] << 16;
                 g = rgb_vector[idx + 1] << 8;
                 b = rgb_vector[idx + 2];
-                fenster_pixel(&f, i, j) = r | g | b;
+                fenster_pixel(&f, x, y) = r | g | b;
             }
         }
     }
@@ -226,9 +227,9 @@ unsigned int otsu_thresholding(float* hist_norm)
 void image_threshold(unsigned int th, unsigned char*gray_image, int width, int height)
 {
     unsigned char value;
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            int idx = (j * width + i) * 3;
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            int idx = (y * width + x) * 3;
 
             value = gray_image[idx] < th ? 0 : 255;;
 

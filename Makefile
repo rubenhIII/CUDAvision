@@ -16,4 +16,4 @@ ifeq ($(PLATFORM), windows)
 endif
 
 all:
-	$(CC) $(SRC) $(CFLAGS) $(LDFLAGS) $(LIBS) -o $(OUT)
+	$(CC) -g $(SRC) $(CFLAGS) $(LDFLAGS) $(LIBS) -o $(OUT)
