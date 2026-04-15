@@ -15,7 +15,7 @@ int main()
     unsigned char *lena, *lena_gray;
     float *hist;
 
-    lena = image_load("img/estacion.jpg", &width, &height, &channels);
+    lena = image_load("img/iglesia.jpg", &width, &height, &channels);
 
     printf("Image loaded: width: %d height: %d channels: %d\n", width, height, channels);
 
