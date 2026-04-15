@@ -65,13 +65,13 @@ unsigned char* image_to_gray_vector(unsigned char *image, int width, int height)
     // gray = 0.21 * R + 0.72 * G + 0.07 * B
     // Evitando el punto flotante (77 * image[idx + 0] + 150 * image[idx + 1] + 29 * image[idx + 2]) >> 8;
     if (!image) return NULL;
-    printf("Aqui ando\n");
     unsigned char *gray_vector = (unsigned char *) malloc (sizeof(unsigned char) * 3 * width * height);
+    if (!gray_vector) return NULL;
     unsigned char gray;
-    printf("Aqui ando\n");
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            int idx = (i * width + j) * 3;
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+
+            int idx = (y * width + x) * 3;
 
             gray = (77 * image[idx + 0] + 150 * image[idx + 1] + 29 * image[idx + 2]) >> 8;
 
@@ -80,7 +80,6 @@ unsigned char* image_to_gray_vector(unsigned char *image, int width, int height)
             gray_vector[idx + 2] = gray;
         }
     }
-    printf("Aqui acabe\n");
     return gray_vector;
 }
 
@@ -228,9 +227,9 @@ unsigned int otsu_thresholding(float* hist_norm)
 void image_threshold(unsigned int th, unsigned char*gray_image, int width, int height)
 {
     unsigned char value;
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            int idx = (j * width + i) * 3;
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            int idx = (y * width + x) * 3;
 
             value = gray_image[idx] < th ? 0 : 255;;
 
