@@ -10,7 +10,6 @@
 
 #include "fenster.h"
 
-#define BIT_DEPTH 255
 
 unsigned char** image_zeros(int width, int height)
 {
@@ -158,7 +157,8 @@ void image_show(unsigned char *rgb_vector, int width, int height)
 unsigned int* image_hist(unsigned char *gray_image, int width, int height)
 {
     unsigned int *hist = (unsigned int *) malloc (sizeof(unsigned int) * BIT_DEPTH);
-    int index = 0;
+    for (int i = 0; i < BIT_DEPTH; i++) hist[i] = 0;
+    unsigned char index = 0;
 
     int min_flag=0, max_flag=0;
     for (int i = 0; i < width * height; i++) {
@@ -167,4 +167,74 @@ unsigned int* image_hist(unsigned char *gray_image, int width, int height)
     }
 
     return hist;
+}
+
+float* image_hist_norm(unsigned char *gray_image, int width, int height)
+{
+    float *hist = (float *) malloc (sizeof(float) * BIT_DEPTH);
+    float step = 1.0 / (width * height);
+    for (int i = 0; i < BIT_DEPTH; i++) hist[i] = 0;
+    unsigned char index = 0;
+    for (int i = 0; i < width * height; i++) {
+        index = gray_image[i];
+        hist[index]+=step;
+    }
+
+    return hist;
+}
+
+float hist_cdf(float *hist_norm, unsigned int m, unsigned int n)
+{
+    float cdf = 0;
+    for (int i = m; i < n; i++) cdf+=hist_norm[i];
+    return cdf;
+}
+
+float hist_mean(float *hist_norm, unsigned int m, unsigned int n)
+{
+    float mean = 0;
+    for (int i = m; i < n; i++) {
+        mean = mean + i * hist_norm[i];
+    }
+    return mean;
+}
+
+unsigned int otsu_thresholding(float* hist_norm)
+{
+    float w0, w1, mu0, mu1, var = 0, var_aux = 0;
+    unsigned int t_star = 0;
+    for (unsigned int t = 0; t < BIT_DEPTH; t++) {
+        w0 = hist_cdf(hist_norm, 0, t);
+        w1 = hist_cdf(hist_norm, t, BIT_DEPTH);
+        mu0 = hist_mean(hist_norm, 0, t) / w0;
+        mu1 = hist_mean(hist_norm, t, BIT_DEPTH) / w1;
+
+        float mu_diff = mu0 - mu1;
+        var_aux = w0 * w1 * mu_diff * mu_diff;
+
+        //printf("t: %d w0: %.004f w1: %.004f mu0: %.004f m1: %.004f var: %.004f var_aux: %.004f \n", t, w0, w1, mu0, mu1, var, var_aux);
+
+        if (var_aux > var) {
+            var = var_aux;
+            t_star = t;
+        }
+    }
+    
+    return t_star;
+}
+
+void image_threshold(unsigned int th, unsigned char*gray_image, int width, int height)
+{
+    unsigned char value;
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            int idx = (j * width + i) * 3;
+
+            value = gray_image[idx] < th ? 0 : 255;;
+
+            gray_image[idx + 0] = value;
+            gray_image[idx + 1] = value;
+            gray_image[idx + 2] = value;
+        }
+    }
 }
