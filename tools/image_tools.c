@@ -65,11 +65,13 @@ unsigned char* image_to_gray_vector(unsigned char *image, int width, int height)
     // gray = 0.21 * R + 0.72 * G + 0.07 * B
     // Evitando el punto flotante (77 * image[idx + 0] + 150 * image[idx + 1] + 29 * image[idx + 2]) >> 8;
     if (!image) return NULL;
+    printf("Aqui ando\n");
     unsigned char *gray_vector = (unsigned char *) malloc (sizeof(unsigned char) * 3 * width * height);
     unsigned char gray;
+    printf("Aqui ando\n");
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
-            int idx = (j * width + i) * 3;
+            int idx = (i * width + j) * 3;
 
             gray = (77 * image[idx + 0] + 150 * image[idx + 1] + 29 * image[idx + 2]) >> 8;
 
@@ -78,6 +80,7 @@ unsigned char* image_to_gray_vector(unsigned char *image, int width, int height)
             gray_vector[idx + 2] = gray;
         }
     }
+    printf("Aqui acabe\n");
     return gray_vector;
 }
 
@@ -132,21 +135,20 @@ unsigned char* image_load(const char* filename, int *width, int *height, int *ch
 void image_show(unsigned char *rgb_vector, int width, int height)
 {
     unsigned int r, g, b;
-    //unsigned int buf[width * height];
     unsigned int *buf = (unsigned int *) malloc (sizeof(unsigned int) * width * height);
     struct fenster f = { .title = "CUDAvision", .width = width, .height = height, .buf = buf };
     fenster_open(&f);
     while (fenster_loop(&f) == 0) {
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
 
                 // rgb_vector[(y * width + x) * channels + c]
-                int idx = (j * width + i) * 3;
+                int idx = (y * width + x) * 3;
 
                 r = rgb_vector[idx + 0] << 16;
                 g = rgb_vector[idx + 1] << 8;
                 b = rgb_vector[idx + 2];
-                fenster_pixel(&f, i, j) = r | g | b;
+                fenster_pixel(&f, x, y) = r | g | b;
             }
         }
     }
