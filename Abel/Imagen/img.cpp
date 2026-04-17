@@ -124,3 +124,10 @@ int main(void)
     free(img);
     return 0;
 }
+
+/*
+Armar la funcion para convertir el vector de la imagen en matrices
+acceder de forma mas sencilla a los canales rgb de una imagen
+
+jugar con la imagen modificando los canales
+*/
