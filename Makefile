@@ -1,7 +1,7 @@
 PLATFORM ?= linux
 
 CC = gcc
-SRC = main.c tools/image_tools.c
+SRC = main.c tools/image_tools.c tools/harris.c
 OUT = main
 
 ifeq ($(PLATFORM), linux)
@@ -10,7 +10,7 @@ endif
 
 ifeq ($(PLATFORM), windows)
     OUT = main.exe
-    CFLAGS = -Itools/SDL3/include
+    CFLAGS = -std=c11 -Itools/SDL3/include
     LDFLAGS = -Ltools/SDL3/lib
     LIBS = -lSDL3 -lgdi32 -lm
 endif
