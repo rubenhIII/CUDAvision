@@ -21,7 +21,7 @@ int main()
     gray = image_to_gray_vector(img, width, height);
 
     // Aplicar detector de Harris
-    float threshold = 1e8;
+    float threshold = 1e7;
     harris_detect(gray, width, height, threshold);
 
     // Mostrar resultado (esquinas en rojo)
