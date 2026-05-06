@@ -19,6 +19,9 @@ float hist_cdf(float *hist_norm, unsigned int n, unsigned int m);
 float hist_mean(float *hist_norm, unsigned int n, unsigned int m);
 unsigned int otsu_thresholding(float *hist_norm);
 void image_threshold(unsigned int th, unsigned char*gray_image, int width, int height);
+void draw_point(unsigned char *gray_image, int width, int height, int x, int y);
+void draw_line(unsigned char *gray_image, int width, int height, int x0, int y0, int x1, int y1);
+void draw_rectangle(unsigned char *gray_image, int width, int height, int x0, int y0, int x1, int y1);
 
 
 #endif

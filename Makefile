@@ -1,7 +1,7 @@
 PLATFORM ?= linux
 
 CC = gcc
-SRC = main.c tools/image_tools.c tools/harris.c
+SRC = main.c tools/image_tools.c tools/harris.c tools/image_descriptors.c
 OUT = main
 
 ifeq ($(PLATFORM), linux)

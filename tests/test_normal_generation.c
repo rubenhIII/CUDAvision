@@ -13,20 +13,22 @@ int main()
     printf("3. Generate coordinates\n");
     while (ans != '4')
     {
-        scanf("%c", &ans);
+        scanf(" %c", &ans);
         switch (ans)
         {
-        case '1':
-            printf("Sample from uniform: %d\n", rand_uniform());
-            break;
-        case '2':
-            printf("Sample from normal: %d\n", rand_normal());
-            break;
-        case '3':
-            printf("Coordinates: %d\n", rand_normal());    
-            break;
-        default:
-            return 0;
+            case '1':
+                printf("Sample from uniform: %f\n", uniform());
+                break;
+            case '2':
+                printf("Sample from normal: %f\n", normal());
+                break;
+            case '3':
+                printf("Coordinates: %d\n", sample_point(2, 10, 20));    
+                break;
+            case '4':
+                return 0;
+            default:
+                printf("Opcion no valida %c\n", ans);
         }
     }
     
