@@ -45,3 +45,13 @@ int sample_point(double sigma, int center_coord, int patch_size)
     
     return coord;
 }
+
+// Prueba binaria entre coordenadas dentro de un parche
+int binary_test(unsigned char *gray_image, int width, int height, int x0, int y0, int x1, int y1)
+{
+    int idx0 = (y0 * width + x0) * 3;
+    int idx1 = (y1 * width + x1) * 3;
+
+    int result = gray_image[idx0] < gray_image[idx1] ? 1 : 0;
+    return result;
+}
