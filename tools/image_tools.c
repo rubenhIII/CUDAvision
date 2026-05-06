@@ -239,3 +239,50 @@ void image_threshold(unsigned int th, unsigned char*gray_image, int width, int h
         }
     }
 }
+
+// Dibuja punto en rojo
+void draw_point(unsigned char *gray_image, int width, int height, int x, int y)
+{
+    int idx = (y * width + x) * 3;
+    gray_image[idx + 0] = 255;
+    gray_image[idx + 1] = 0;
+    gray_image[idx + 2] = 0;
+}
+
+// Dibuja rectangulo en rojo
+void draw_line(unsigned char *gray_image, int width, int height, int x0, int y0, int x1, int y1)
+{
+    int dx = abs(x1 - x0);
+    int dy = abs(y1 - y0);
+
+    int sx = (x0 < x1) ? 1 : -1;
+    int sy = (y0 < y1) ? 1 : -1;
+
+    int err = dx - dy;
+
+    while (1) {
+        draw_point(gray_image, width, height, x0, y0);
+
+        if (x0 == x1 && y0 == y1) break;
+
+        int e2 = 2 * err;
+
+        if (e2 > -dy) {
+            err -= dy;
+            x0 += sx;
+        }
+
+        if (e2 < dx) {
+            err += dx;
+            y0 += sy;
+        }
+    }
+}
+
+void draw_rectangle(unsigned char *gray_image, int width, int height, int x0, int y0, int x1, int y1)
+{
+    draw_line(gray_image, width, height, x0, y0, x0, y1);
+    draw_line(gray_image, width, height, x0, y0, x1, y0);
+    draw_line(gray_image, width, height, x0, y1, x1, y1);
+    draw_line(gray_image, width, height, x1, y0, x1, y1);
+}

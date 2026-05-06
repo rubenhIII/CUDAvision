@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include "tools/image_descriptors.h"
 #include "tools/image_tools.h"
 #include "tools/harris.h"
+
 
 int main()
 {
@@ -21,8 +23,15 @@ int main()
     gray = image_to_gray_vector(img, width, height);
 
     // Aplicar detector de Harris
-    float threshold = 1e7;
-    harris_detect(gray, width, height, threshold);
+    //float threshold = 1e7;
+    //harris_detect(gray, width, height, threshold);
+
+    draw_rectangle(gray, width, height, 100, 100, 200, 200);
+    for (int i = 0; i < 10; i++) {
+        int x = sample_point(4, 150, 100);
+        int y = sample_point(4, 150, 100);
+        draw_point(gray, width, height, x, y);
+    }
 
     // Mostrar resultado (esquinas en rojo)
     image_show(gray, width, height);
