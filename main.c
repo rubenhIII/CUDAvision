@@ -26,12 +26,22 @@ int main()
     //float threshold = 1e7;
     //harris_detect(gray, width, height, threshold);
 
-    draw_rectangle(gray, width, height, 100, 100, 200, 200);
-    for (int i = 0; i < 10; i++) {
-        int x = sample_point(4, 150, 100);
-        int y = sample_point(4, 150, 100);
-        draw_point(gray, width, height, x, y);
+    draw_rectangle(gray, width, height, 400, 400, 500, 500);
+    for (int i = 0; i < 255; i++) {
+        int x0 = sample_point(20, 450, 100);
+        int y0 = sample_point(20, 450, 100);
+
+        int x1 = sample_point(20, 450, 100);
+        int y1 = sample_point(20, 450, 100);
+        
+        int res = binary_test(gray, width, height, x0, y0, x1, y1);
+
+        draw_point(gray, width, height, x0, y0, RED);
+        draw_point(gray, width, height, x1, y1, BLUE);
+
+        printf("%d ", res);
     }
+    printf("\n");
 
     // Mostrar resultado (esquinas en rojo)
     image_show(gray, width, height);
