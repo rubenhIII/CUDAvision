@@ -8,7 +8,7 @@ int main()
     int width, height, channels;
     unsigned char *img, *gray;
 
-    img = image_load("img/iglesia.jpg", &width, &height, &channels);
+    img = image_load("img/graf/img1.png", &width, &height, &channels);
 
     if (!img) {
         printf("Error loading image\n");
