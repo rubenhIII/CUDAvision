@@ -11,6 +11,12 @@
 #include "fenster.h"
 
 
+unsigned char Color_RGB[COLOR_COUNT][3] = {
+    {255, 0, 0},
+    {0, 255, 0},
+    {0, 0, 255}
+};
+
 unsigned char** image_zeros(int width, int height)
 {
     unsigned char** image = (unsigned char **) malloc (sizeof(unsigned char *) * height);
@@ -238,4 +244,51 @@ void image_threshold(unsigned int th, unsigned char*gray_image, int width, int h
             gray_image[idx + 2] = value;
         }
     }
+}
+
+// Dibuja punto
+void draw_point(unsigned char *gray_image, int width, int height, int x, int y, Color color)
+{
+    int idx = (y * width + x) * 3;
+    gray_image[idx + 0] = Color_RGB[color][0];
+    gray_image[idx + 1] = Color_RGB[color][1];;
+    gray_image[idx + 2] = Color_RGB[color][2];;
+}
+
+// Dibuja rectangulo en rojo
+void draw_line(unsigned char *gray_image, int width, int height, int x0, int y0, int x1, int y1)
+{
+    int dx = abs(x1 - x0);
+    int dy = abs(y1 - y0);
+
+    int sx = (x0 < x1) ? 1 : -1;
+    int sy = (y0 < y1) ? 1 : -1;
+
+    int err = dx - dy;
+
+    while (1) {
+        draw_point(gray_image, width, height, x0, y0, RED);
+
+        if (x0 == x1 && y0 == y1) break;
+
+        int e2 = 2 * err;
+
+        if (e2 > -dy) {
+            err -= dy;
+            x0 += sx;
+        }
+
+        if (e2 < dx) {
+            err += dx;
+            y0 += sy;
+        }
+    }
+}
+
+void draw_rectangle(unsigned char *gray_image, int width, int height, int x0, int y0, int x1, int y1)
+{
+    draw_line(gray_image, width, height, x0, y0, x0, y1);
+    draw_line(gray_image, width, height, x0, y0, x1, y0);
+    draw_line(gray_image, width, height, x0, y1, x1, y1);
+    draw_line(gray_image, width, height, x1, y0, x1, y1);
 }
