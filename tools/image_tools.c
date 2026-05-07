@@ -54,6 +54,13 @@ void image_print(unsigned char **image, int width, int height)
     }
 }
 
+unsigned char * vec_zeros(int len)
+{
+    unsigned char * out = (unsigned char*) malloc(sizeof(unsigned char) * len);
+    for (int i = 0; i < len ; i++) out[i] = 0;
+    return out;
+}
+
 unsigned char** image_to_gray(unsigned char **r, unsigned char **g, unsigned char **b, int width, int height)
 {
     // Grayscale Luminosity formula
@@ -291,4 +298,24 @@ void draw_rectangle(unsigned char *gray_image, int width, int height, int x0, in
     draw_line(gray_image, width, height, x0, y0, x1, y0);
     draw_line(gray_image, width, height, x0, y1, x1, y1);
     draw_line(gray_image, width, height, x1, y0, x1, y1);
+}
+
+void image_hstack(unsigned char *image_0, unsigned char *image_1, unsigned char * image_out, int width, int height)
+{
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            int idx = (y * width + x) * 3;
+            
+            int idx1 = (y * width * 2 + x) * 3;
+            image_out[idx1 + 0] = image_0[idx + 0];
+            image_out[idx1 + 1] = image_0[idx + 1];
+            image_out[idx1 + 2] = image_0[idx + 2];
+
+            int idx2 = (y * width * 2 + x) * 3 + width * 3;
+            image_out[idx2 + 0] = image_1[idx + 0];
+            image_out[idx2 + 1] = image_1[idx + 1];
+            image_out[idx2 + 2] = image_1[idx + 2];
+        }
+    }
+
 }
