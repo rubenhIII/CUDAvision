@@ -14,6 +14,7 @@ unsigned char** image_zeros(int width, int heigh);
 unsigned char** image_copy(unsigned char **image, int width, int height);
 void image_free(unsigned char **image, int width, int height);
 void image_print(unsigned char **image, int width, int height);
+unsigned char * vec_zeros(int len);
 unsigned char** image_to_gray(unsigned char **r, unsigned char **g, unsigned char **b, int width, int height);
 unsigned char* image_to_gray_vector(unsigned char *image, int width, int height);
 unsigned char** image_rgb_channel(unsigned char *rgb_vector, int vec_size, int width, int height, const char channel);
@@ -29,6 +30,7 @@ void image_threshold(unsigned int th, unsigned char*gray_image, int width, int h
 void draw_point(unsigned char *gray_image, int width, int height, int x, int y, Color color);
 void draw_line(unsigned char *gray_image, int width, int height, int x0, int y0, int x1, int y1);
 void draw_rectangle(unsigned char *gray_image, int width, int height, int x0, int y0, int x1, int y1);
+void image_hstack(unsigned char *image_0, unsigned char *image_1, unsigned char * image_out, int width, int height);
 
 
 #endif

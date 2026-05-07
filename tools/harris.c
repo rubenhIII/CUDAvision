@@ -75,8 +75,9 @@ void sobel(float* Ix, float* Iy, float* img, int w, int h)
 // -----------------------------
 // Non-Maximum Suppression
 // -----------------------------
-void non_max_suppression(float* R, int w, int h, unsigned char* out, float threshold)
+void non_max_suppression(float* R, int w, int h, unsigned char* out, float threshold, int max_points, int *points_x, int *points_y)
 {
+    int p = 0;
     for (int y = 1; y < h-1; y++) {
         for (int x = 1; x < w-1; x++) {
 
@@ -104,6 +105,12 @@ void non_max_suppression(float* R, int w, int h, unsigned char* out, float thres
                 out[idx+0] = 255; // rojo
                 out[idx+1] = 0;
                 out[idx+2] = 0;
+
+                //points_x[p] = x;
+                //points_y[p] = y;
+                //p++;
+                
+                //if (p >= max_points) return;
             }
         }
     }
@@ -112,7 +119,7 @@ void non_max_suppression(float* R, int w, int h, unsigned char* out, float thres
 // -----------------------------
 // Harris completo
 // -----------------------------
-void harris_detect(unsigned char* gray, int width, int height, float threshold)
+void harris_detect(unsigned char* gray, int width, int height, float threshold, int max_points, int *points_x, int *points_y)
 {
     int size = width * height;
 
@@ -163,7 +170,7 @@ void harris_detect(unsigned char* gray, int width, int height, float threshold)
     }
 
     // 6. NMS + dibujar esquinas
-    non_max_suppression(R, width, height, gray, threshold);
+    non_max_suppression(R, width, height, gray, threshold, max_points, points_x, points_y);
 
     free(img); free(blur);
     free(Ix); free(Iy);
