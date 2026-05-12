@@ -10,7 +10,7 @@ typedef enum {
     COLOR_COUNT
 } Color;
 
-unsigned char** image_zeros(int width, int heigh);
+unsigned char** image_zeros(int width, int height);
 unsigned char** image_copy(unsigned char **image, int width, int height);
 void image_free(unsigned char **image, int width, int height);
 void image_print(unsigned char **image, int width, int height);

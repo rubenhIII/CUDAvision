@@ -8,10 +8,11 @@
 int main()
 {
     int width, height, channels;
+    int width2, height2, channels2;
     unsigned char *img, *gray, *img2, *gray2;
 
-    img = image_load("img/iglesia.jpg", &width, &height, &channels);
-    //img2 = image_load("img/graf/img4.png", &width, &height, &channels);
+    img = image_load("img/graf/img1.png", &width, &height, &channels);
+    img2 = image_load("img/graf/img4.png", &width2, &height2, &channels2);
 
     if (!img) {
         printf("Error loading image\n");
@@ -22,49 +23,60 @@ int main()
 
     // Convertir a escala de grises (en formato RGB)
     gray = image_to_gray_vector(img, width, height);
-    //gray2 = image_to_gray_vector(img2, width, height);
+    gray2 = image_to_gray_vector(img2, width2, height2);
 
     // Aplicar detector de Harris
     float threshold = 1e7;
-    int max_points = 10;
+    int max_points = 50;
     int *points_x = (int *) malloc (sizeof(int) * max_points);
     int *points_y = (int *) malloc (sizeof(int) * max_points);
     harris_detect(gray, width, height, threshold, max_points, points_x, points_y);
 
+    int *points_x2 = (int *) malloc (sizeof(int) * max_points);
+    int *points_y2 = (int *) malloc (sizeof(int) * max_points);
+    harris_detect(gray2, width2, height2, threshold, max_points, points_x2, points_y2);
+
+    //for (int i = 0; i < max_points; i++) {
+    //    printf("x: %d y: %d \n", points_x[i], points_y[i]);
+    //}
+
+
     //----
-    /*
+    // Descriptor BRIEF
+    int descriptor_len = 5;
+    unsigned char **descriptors_img1 = image_zeros(descriptor_len, max_points);
+    unsigned char **descriptors_img2 = image_zeros(descriptor_len, max_points);
 
-    for (int i =0; i < max_points; i++) {
-        draw_point(gray, width, height, points_x[i], points_y[i], GREEN);
+    brief_descriptor(gray, width, height, descriptors_img1, descriptor_len, points_x, points_y, max_points);
+    brief_descriptor(gray2, width2, height2, descriptors_img2, descriptor_len, points_x2, points_y2, max_points);
+
+    for (int p = 0; p < max_points; p++) {
+        for (int d = 0; d < descriptor_len; d++) {
+            printf("%d", descriptors_img1[d][p]);
+        }
+        printf(" ");
+        for (int d = 0; d < descriptor_len; d++) {
+            printf("%d", descriptors_img2[d][p]);
+        }
+        printf("\n");
     }
-
-    draw_rectangle(gray, width, height, 400, 400, 500, 500);
-    for (int i = 0; i < 255; i++) {
-        int x0 = sample_point(20, 450, 100);
-        int y0 = sample_point(20, 450, 100);
-
-        int x1 = sample_point(20, 450, 100);
-        int y1 = sample_point(20, 450, 100);
-        
-        int res = binary_test(gray, width, height, x0, y0, x1, y1);
-
-        draw_point(gray, width, height, x0, y0, RED);
-        draw_point(gray, width, height, x1, y1, BLUE);
-
-        printf("%d ", res);
-    }
-    printf("\n");
-
+    
+    
     // Stack imágenes
     unsigned char *out_gray = vec_zeros(width * height * 6);
     image_hstack(gray, gray2, out_gray, width, height);
-    */
-
+    image_show(out_gray, width * 2, height);
+    
     // Mostrar resultado
-    image_show(gray, width, height);
+    //image_show(gray, width, height);
 
     free(img);
     free(gray);
+
+    free(points_x);
+    free(points_y);
+    image_free(descriptors_img1, descriptor_len, max_points);
+    image_free(descriptors_img2, descriptor_len, max_points);
 
     return 0;
 }

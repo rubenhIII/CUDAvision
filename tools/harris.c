@@ -106,11 +106,11 @@ void non_max_suppression(float* R, int w, int h, unsigned char* out, float thres
                 out[idx+1] = 0;
                 out[idx+2] = 0;
 
-                //points_x[p] = x;
-                //points_y[p] = y;
-                //p++;
+                points_x[p] = x;
+                points_y[p] = y;
+                p++;
                 
-                //if (p >= max_points) return;
+                if (p >= max_points) return;
             }
         }
     }
