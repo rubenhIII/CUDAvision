@@ -29,6 +29,18 @@ unsigned char** image_zeros(int width, int height)
     return image;
 }
 
+unsigned char ** matrix_zeros(int rows, int columns)
+{
+    unsigned char** image = (unsigned char **) malloc (sizeof(unsigned char *) * rows);
+    for (int i = 0; i < rows; i++) {
+        image[i] = (unsigned char*) malloc (sizeof(unsigned char) * columns);
+        for (int j = 0; j < columns; j++) {
+            image[i][j] = 0;
+        }
+    }
+    return image;
+}
+
 unsigned char** image_copy(unsigned char **image, int width, int height)
 {
     unsigned char **image_cpy = image_zeros(width, height);
