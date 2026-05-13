@@ -11,8 +11,8 @@ int main()
     int width2, height2, channels2;
     unsigned char *img, *gray, *img2, *gray2;
 
-    img = image_load("img/graf/img1.png", &width, &height, &channels);
-    img2 = image_load("img/graf/img2.png", &width2, &height2, &channels2);
+    img = image_load("img/lena.jpeg", &width, &height, &channels);
+    img2 = image_load("img/lena_translated.jpeg", &width2, &height2, &channels2);
 
     if (!img) {
         printf("Error loading image\n");
@@ -27,7 +27,7 @@ int main()
 
     // Aplicar detector de Harris
     float threshold = 1e7;
-    int max_points = 5;
+    int max_points = 1000;
     int *points_x = (int *) malloc (sizeof(int) * max_points);
     int *points_y = (int *) malloc (sizeof(int) * max_points);
     harris_detect(gray, width, height, threshold, max_points, points_x, points_y);
@@ -43,13 +43,19 @@ int main()
 
     //----
     // Descriptor BRIEF
-    int descriptor_len = 5;
+    int descriptor_len = 256;
+    double **norm_x = matrix_zeros_d(descriptor_len, 2);
+    double **norm_y = matrix_zeros_d(descriptor_len, 2);
     unsigned char **descriptors_img1 = matrix_zeros(max_points, descriptor_len);
     unsigned char **descriptors_img2 = matrix_zeros(max_points, descriptor_len);
 
-    brief_descriptor(gray, width, height, descriptors_img1, descriptor_len, points_x, points_y, max_points);
-    brief_descriptor(gray2, width2, height2, descriptors_img2, descriptor_len, points_x2, points_y2, max_points);
+    double sigma = 20;
+    sample_pattern(sigma, norm_x, norm_y, descriptor_len);
+    brief_descriptor(gray, width, height, descriptors_img1, descriptor_len, points_x, points_y, max_points, norm_x, norm_y);
+    brief_descriptor(gray2, width2, height2, descriptors_img2, descriptor_len, points_x2, points_y2, max_points, norm_x, norm_y);
 
+    // Imprime vectores de descripcion
+    /*
     for (int p = 0; p < max_points; p++) {
         for (int d = 0; d < descriptor_len; d++) {
             printf("%d", descriptors_img1[p][d]);
@@ -61,22 +67,38 @@ int main()
         printf("\n");
     }
     printf("\n");
+    */
 
-    int **matches = hamming(descriptors_img1, descriptors_img2, descriptor_len, max_points);
-    printf("Matches\n");
-    for (int p = 0; p < max_points; p++) {
-        printf("%d %d %d\n", matches[p][0], matches[p][1], matches[p][2]);
-    }
+    unsigned int **matches = hamming(descriptors_img1, descriptors_img2, descriptor_len, max_points);
+    //printf("Matches\n");
+    //for (int p = 0; p < max_points; p++) {
+    //    printf("%d %d %d\n", matches[p][0], matches[p][1], matches[p][2]);
+    //}
 
+    // Libera memoria
     for (int p = 0; p < max_points; p++) {
         free(matches[p]);
     }
     free(matches);
+    matrix_free_d(norm_x, descriptor_len, 2);
+    matrix_free_d(norm_y, descriptor_len, 2);
     
     
-    // Stack imágenes
+    // Stack imágenes y muestra
     unsigned char *out_gray = vec_zeros(width * height * 6);
     image_hstack(gray, gray2, out_gray, width, height);
+
+    int x_offset = width;
+    int good_counter = 0;
+    for (int p = 0; p < max_points; p++) {
+        if (matches[p][2] <= 1 && good_counter <= 20) {
+            printf("Entro\n");
+            printf("Matches: %d %d %d %d\n", matches[p][0], matches[p][0], matches[p][1], matches[p][1]);
+            good_counter++;
+            printf("Points: %d %d %d %d\n\n", points_x[matches[p][0]], points_y[matches[p][0]], points_x2[matches[p][1]], points_y2[matches[p][1]]);
+            draw_line(out_gray, width * 2, height, points_x[matches[p][0]], points_y[matches[p][0]], points_x2[matches[p][1]] + x_offset, points_y2[matches[p][1]]);
+        }
+    }
     image_show(out_gray, width * 2, height);
     
     // Mostrar resultado
