@@ -41,6 +41,18 @@ unsigned char ** matrix_zeros(int rows, int columns)
     return image;
 }
 
+double ** matrix_zeros_d(int rows, int columns)
+{
+    double** image = (double **) malloc (sizeof(double *) * rows);
+    for (int i = 0; i < rows; i++) {
+        image[i] = (double*) malloc (sizeof(double) * columns);
+        for (int j = 0; j < columns; j++) {
+            image[i][j] = 0;
+        }
+    }
+    return image;
+}
+
 unsigned char** image_copy(unsigned char **image, int width, int height)
 {
     unsigned char **image_cpy = image_zeros(width, height);
@@ -54,6 +66,12 @@ void image_free(unsigned char **image, int width, int height)
 {
     for (int i = 0; i < height; i++) free(image[i]);
     free(image);
+}
+
+void matrix_free_d(double **matrix, int rows, int columns)
+{
+    for (int i = 0; i < rows; i++) free(matrix[i]);
+    free(matrix);
 }
 
 void image_print(unsigned char **image, int width, int height)
@@ -274,7 +292,7 @@ void draw_point(unsigned char *gray_image, int width, int height, int x, int y, 
     gray_image[idx + 2] = Color_RGB[color][2];;
 }
 
-// Dibuja rectangulo en rojo
+// Dibuja línea en rojo
 void draw_line(unsigned char *gray_image, int width, int height, int x0, int y0, int x1, int y1)
 {
     int dx = abs(x1 - x0);
