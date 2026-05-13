@@ -7,5 +7,6 @@ double rnorm(double mu, double sigma);
 int sample_point(double sigma, int center_coord, int patch_size, int limit);
 int binary_test(unsigned char *gray_image, int width, int height, int x0, int y0, int x1, int y1);
 void brief_descriptor(unsigned char * gray, int width, int height, unsigned char **descriptors, int descriptor_len, int *points_x, int *points_y, int max_points);
+int** hamming(unsigned char **descriptors, unsigned char **descriptors2, int descriptor_len, int max_points);
 
 #endif

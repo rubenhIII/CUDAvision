@@ -11,6 +11,7 @@ typedef enum {
 } Color;
 
 unsigned char** image_zeros(int width, int height);
+unsigned char ** matrix_zeros(int rows, int columns);
 unsigned char** image_copy(unsigned char **image, int width, int height);
 void image_free(unsigned char **image, int width, int height);
 void image_print(unsigned char **image, int width, int height);

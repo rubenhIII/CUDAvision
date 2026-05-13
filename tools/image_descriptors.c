@@ -73,7 +73,7 @@ void brief_descriptor(unsigned char * gray, int width, int height, unsigned char
             int y1 = sample_point(20, y, 100, height);
             
             //printf("x: %d y: %d x0: %d y0: %d x1: %d y1: %d", x, y, x0, y0, x1, y1);
-            descriptors[d][p] = binary_test(gray, width, height, x0, y0, x1, y1);
+            descriptors[p][d] = binary_test(gray, width, height, x0, y0, x1, y1);
 
             //draw_point(gray, width, height, x0, y0, RED);
             //draw_point(gray, width, height, x1, y1, BLUE);
@@ -83,4 +83,42 @@ void brief_descriptor(unsigned char * gray, int width, int height, unsigned char
         //printf("\n");
     }
 
+}
+
+int** hamming(unsigned char **descriptors, unsigned char **descriptors2, int descriptor_len, int max_points)
+{
+    // matches [indice indiceMejorMatch distancia]
+    int **matches = (int**) malloc(sizeof(int*) * max_points);
+    for (int i = 0; i < max_points; i++) {
+        matches[i] = (int *) malloc(sizeof(int) * 3);
+        for (int j = 0; j < 3; j++) {
+            matches[i][j] = 0;
+        }
+    }
+
+    int distance = 0;
+    int diff = 0;
+    for (int i = 0; i < max_points; i++) {
+        for (int j = 0; j < max_points; j++) {
+            distance = 0;
+            diff = 0;
+            for (int k = 0; k< descriptor_len; k++) {
+                diff = descriptors[i][k] == descriptors2[j][k] ? 0 : 1;
+                distance+=diff;
+            }
+            if (j == 0) {
+                matches[i][0] = i;
+                matches[i][1] = j;
+                matches[i][2] = distance;
+            }
+            else {
+                if (matches[i][2] > distance) {
+                    matches[i][0] = i;
+                    matches[i][1] = j;
+                    matches[i][2] = distance;                    
+                }
+            }
+        }
+    }
+    return matches;
 }
