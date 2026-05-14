@@ -1,0 +1,417 @@
+Dr. Memory version 2.6.0 build 0 built on Sep 21 2023 17:38:58
+Windows version: WinVer=105;Rel=2009;Build=19045;Edition=Professional
+Dr. Memory results for pid 13040: "main.exe"
+Application cmdline: ".\main.exe"
+Recorded 124 suppression(s) from default C:\Program Files (x86)\Dr. Memory\bin64\suppress-default.txt
+
+Error #1: UNADDRESSABLE ACCESS beyond top of stack: reading 0x0000008ec7bff4a0-0x0000008ec7bff4a8 8 byte(s)
+# 0 ___chkstk_ms
+# 1 _pei386_runtime_relocator
+# 2 __tmainCRTStartup
+# 3 .l_start
+# 4 KERNEL32.dll!BaseThreadInitThunk
+Note: @0:00:00.544 in thread 8716
+Note: 0x0000008ec7bff4a0 refers to 696 byte(s) beyond the top of the stack 0x0000008ec7bff758
+Note: instruction: or     $0x0000000000000000 (%rcx) -> (%rcx)
+
+Error #2: UNADDRESSABLE ACCESS beyond top of stack: reading 0x0000008ec7bfe098-0x0000008ec7bfe0a0 8 byte(s)
+# 0 ___chkstk_ms
+# 1 stbi__idct_simd
+# 2 stbi__parse_entropy_coded_data
+# 3 stbi__decode_jpeg_image
+# 4 load_jpeg_image
+# 5 stbi__jpeg_load
+# 6 stbi__load_main
+# 7 stbi__load_and_postprocess_8bit
+# 8 stbi_load_from_file
+# 9 stbi_load
+#10 image_load
+#11 main    
+Note: @0:00:00.874 in thread 8716
+Note: 0x0000008ec7bfe098 refers to 4072 byte(s) beyond the top of the stack 0x0000008ec7bff080
+Note: instruction: or     $0x0000000000000000 (%rcx) -> (%rcx)
+
+Error #3: UNADDRESSABLE ACCESS beyond top of stack: reading 0x0000008ec7bfc5f0-0x0000008ec7bfc5f8 8 byte(s)
+# 0 ___chkstk_ms
+# 1 stbi__idct_simd
+# 2 stbi__parse_entropy_coded_data
+# 3 stbi__decode_jpeg_image
+# 4 load_jpeg_image
+# 5 stbi__jpeg_load
+# 6 stbi__load_main
+# 7 stbi__load_and_postprocess_8bit
+# 8 stbi_load_from_file
+# 9 stbi_load
+#10 image_load
+#11 main    
+Note: @0:00:00.874 in thread 8716
+Note: 0x0000008ec7bfc5f0 refers to 10896 byte(s) beyond the top of the stack 0x0000008ec7bff080
+Note: instruction: or     $0x0000000000000000 (%rcx) -> (%rcx)
+
+Error #4: UNADDRESSABLE ACCESS beyond top of stack: reading 0x0000008ec7bfe098-0x0000008ec7bfe0a0 8 byte(s)
+# 0 ___chkstk_ms
+# 1 stbi__idct_simd
+# 2 stbi__parse_entropy_coded_data
+# 3 stbi__decode_jpeg_image
+# 4 load_jpeg_image
+# 5 libwinpthread-1.dll!?                       +0x0      (0x00007ffc1c9d68f3 <libwinpthread-1.dll+0x68f3>)
+# 6 KERNEL32.dll!BaseThreadInitThunk
+Note: @0:00:02.438 in thread 8716
+Note: 0x0000008ec7bfe098 refers to 4072 byte(s) beyond the top of the stack 0x0000008ec7bff080
+Note: instruction: or     $0x0000000000000000 (%rcx) -> (%rcx)
+
+Error #5: UNADDRESSABLE ACCESS beyond top of stack: reading 0x0000008ec7bfc5f0-0x0000008ec7bfc5f8 8 byte(s)
+# 0 ___chkstk_ms
+# 1 stbi__idct_simd
+# 2 stbi__parse_entropy_coded_data
+# 3 stbi__decode_jpeg_image
+# 4 load_jpeg_image
+# 5 libwinpthread-1.dll!?                       +0x0      (0x00007ffc1c9d68f3 <libwinpthread-1.dll+0x68f3>)
+# 6 KERNEL32.dll!BaseThreadInitThunk
+Note: @0:00:02.438 in thread 8716
+Note: 0x0000008ec7bfc5f0 refers to 10896 byte(s) beyond the top of the stack 0x0000008ec7bff080
+Note: instruction: or     $0x0000000000000000 (%rcx) -> (%rcx)
+
+Error #6: UNINITIALIZED READ: reading 0x0000008ec7bff65c-0x0000008ec7bff660 4 byte(s)
+# 0 sample_point
+# 1 brief_descriptor
+# 2 main    
+Note: @0:00:15.483 in thread 8716
+Note: instruction: cmp    0xfffffffc(%rbp) $0x00000000
+
+Error #7: UNINITIALIZED READ: reading 0x0000008ec7bff65c-0x0000008ec7bff660 4 byte(s)
+# 0 sample_point
+# 1 brief_descriptor
+# 2 main    
+Note: @0:00:15.483 in thread 8716
+Note: instruction: cmp    0xfffffffc(%rbp) $0x00000000
+
+Error #8: UNINITIALIZED READ: reading 0x0000008ec7bff65c-0x0000008ec7bff660 4 byte(s)
+# 0 sample_point
+# 1 brief_descriptor
+# 2 main    
+Note: @0:00:15.483 in thread 8716
+Note: instruction: cmp    0xfffffffc(%rbp) $0x00000000
+
+Error #9: UNINITIALIZED READ: reading 0x0000008ec7bff65c-0x0000008ec7bff660 4 byte(s)
+# 0 sample_point
+# 1 brief_descriptor
+# 2 main    
+Note: @0:00:15.483 in thread 8716
+Note: instruction: cmp    0xfffffffc(%rbp) $0x00000000
+
+Error #10: UNINITIALIZED READ: reading 0x0000008ec7bff65c-0x0000008ec7bff660 4 byte(s)
+# 0 sample_point
+# 1 brief_descriptor
+# 2 main    
+Note: @0:01:05.684 in thread 8716
+Note: instruction: cmp    0xfffffffc(%rbp) $0x00000000
+
+Error #11: UNINITIALIZED READ: reading 0x0000008ec7bff65c-0x0000008ec7bff660 4 byte(s)
+# 0 sample_point
+# 1 brief_descriptor
+# 2 main    
+Note: @0:01:05.684 in thread 8716
+Note: instruction: cmp    0xfffffffc(%rbp) $0x00000000
+
+Error #12: UNINITIALIZED READ: reading 0x0000008ec7bff65c-0x0000008ec7bff660 4 byte(s)
+# 0 sample_point
+# 1 brief_descriptor
+# 2 main    
+Note: @0:01:05.684 in thread 8716
+Note: instruction: cmp    0xfffffffc(%rbp) $0x00000000
+
+Error #13: UNINITIALIZED READ: reading 0x0000008ec7bff65c-0x0000008ec7bff660 4 byte(s)
+# 0 sample_point
+# 1 brief_descriptor
+# 2 main    
+Note: @0:01:05.684 in thread 8716
+Note: instruction: cmp    0xfffffffc(%rbp) $0x00000000
+
+Error #14: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11ae88f0-0x0000020f11ae88f8 8 byte(s)
+# 0 main    
+Note: @0:02:01.940 in thread 8716
+Note: prev lower malloc:  0x0000020f11ae87d0-0x0000020f11ae88d0
+Note: 0x0000020f11ae88f0-0x0000020f11ae88f8 overlaps memory 0x0000020f11ae88f0-0x0000020f11aea830 that was freed here:
+Note: # 0 replace_free               [D:\a\drmemory\drmemory\common\alloc_replace.c:2710]
+Note: # 1 main    
+Note: instruction: mov    (%rax) -> %rax
+
+Error #15: UNADDRESSABLE ACCESS beyond heap bounds: reading 0x0000020f11a517f8-0x0000020f11a517fc 4 byte(s)
+# 0 main    
+Note: @0:02:01.958 in thread 8716
+Note: prev lower malloc:  0x0000020f11a50030-0x0000020f11a50fd0
+Note: 0x0000020f11a517f8-0x0000020f11a517fc is 8 byte(s) beyond memory 0x0000020f11a50ff0-0x0000020f11a517f0 that was freed here:
+Note: # 0 replace_free                [D:\a\drmemory\drmemory\common\alloc_replace.c:2710]
+Note: # 1 matrix_free_d
+Note: # 2 main    
+Note: instruction: mov    (%rax) -> %eax
+
+Error #16: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11ae8988-0x0000020f11ae8990 8 byte(s)
+# 0 main    
+Note: @0:02:01.988 in thread 8716
+Note: prev lower malloc:  0x0000020f11ae87d0-0x0000020f11ae88d0
+Note: 0x0000020f11ae8988-0x0000020f11ae8990 overlaps memory 0x0000020f11ae88f0-0x0000020f11aea830 that was freed here:
+Note: # 0 replace_free               [D:\a\drmemory\drmemory\common\alloc_replace.c:2710]
+Note: # 1 main    
+Note: instruction: mov    (%rax) -> %rax
+
+Error #17: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11aeabe4-0x0000020f11aeabe8 4 byte(s)
+# 0 main    
+Note: @0:02:01.988 in thread 8716
+Note: 0x0000020f11aeabe4-0x0000020f11aeabe8 overlaps memory 0x0000020f11aeabe0-0x0000020f11aeabec that was freed here:
+Note: # 0 replace_free               [D:\a\drmemory\drmemory\common\alloc_replace.c:2710]
+Note: # 1 main    
+Note: instruction: mov    (%rax) -> %ecx
+
+Error #18: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11ae8988-0x0000020f11ae8990 8 byte(s)
+# 0 main    
+Note: @0:02:01.989 in thread 8716
+Note: prev lower malloc:  0x0000020f11ae87d0-0x0000020f11ae88d0
+Note: 0x0000020f11ae8988-0x0000020f11ae8990 overlaps memory 0x0000020f11ae88f0-0x0000020f11aea830 that was freed here:
+Note: # 0 replace_free               [D:\a\drmemory\drmemory\common\alloc_replace.c:2710]
+Note: # 1 main    
+Note: instruction: mov    (%rax) -> %rax
+
+Error #19: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11aeabe4-0x0000020f11aeabe8 4 byte(s)
+# 0 main    
+Note: @0:02:01.989 in thread 8716
+Note: 0x0000020f11aeabe4-0x0000020f11aeabe8 overlaps memory 0x0000020f11aeabe0-0x0000020f11aeabec that was freed here:
+Note: # 0 replace_free               [D:\a\drmemory\drmemory\common\alloc_replace.c:2710]
+Note: # 1 main    
+Note: instruction: mov    (%rax) -> %r9d
+
+Error #20: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11ae8988-0x0000020f11ae8990 8 byte(s)
+# 0 main    
+Note: @0:02:01.989 in thread 8716
+Note: prev lower malloc:  0x0000020f11ae87d0-0x0000020f11ae88d0
+Note: 0x0000020f11ae8988-0x0000020f11ae8990 overlaps memory 0x0000020f11ae88f0-0x0000020f11aea830 that was freed here:
+Note: # 0 replace_free               [D:\a\drmemory\drmemory\common\alloc_replace.c:2710]
+Note: # 1 main    
+Note: instruction: mov    (%rax) -> %rax
+
+Error #21: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11aeabe0-0x0000020f11aeabe4 4 byte(s)
+# 0 main    
+Note: @0:02:01.990 in thread 8716
+Note: 0x0000020f11aeabe0-0x0000020f11aeabe4 overlaps memory 0x0000020f11aeabe0-0x0000020f11aeabec that was freed here:
+Note: # 0 replace_free               [D:\a\drmemory\drmemory\common\alloc_replace.c:2710]
+Note: # 1 main    
+Note: instruction: mov    (%rax) -> %r8d
+
+Error #22: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11ae8988-0x0000020f11ae8990 8 byte(s)
+# 0 main    
+Note: @0:02:01.990 in thread 8716
+Note: prev lower malloc:  0x0000020f11ae87d0-0x0000020f11ae88d0
+Note: 0x0000020f11ae8988-0x0000020f11ae8990 overlaps memory 0x0000020f11ae88f0-0x0000020f11aea830 that was freed here:
+Note: # 0 replace_free               [D:\a\drmemory\drmemory\common\alloc_replace.c:2710]
+Note: # 1 main    
+Note: instruction: mov    (%rax) -> %rax
+
+Error #23: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11aeabe0-0x0000020f11aeabe4 4 byte(s)
+# 0 main    
+Note: @0:02:01.991 in thread 8716
+Note: 0x0000020f11aeabe0-0x0000020f11aeabe4 overlaps memory 0x0000020f11aeabe0-0x0000020f11aeabec that was freed here:
+Note: # 0 replace_free               [D:\a\drmemory\drmemory\common\alloc_replace.c:2710]
+Note: # 1 main    
+Note: instruction: mov    (%rax) -> %edx
+
+Error #24: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11ae8988-0x0000020f11ae8990 8 byte(s)
+# 0 main    
+Note: @0:02:02.002 in thread 8716
+Note: prev lower malloc:  0x0000020f11ae87d0-0x0000020f11ae88d0
+Note: 0x0000020f11ae8988-0x0000020f11ae8990 overlaps memory 0x0000020f11ae88f0-0x0000020f11aea830 that was freed here:
+Note: # 0 replace_free               [D:\a\drmemory\drmemory\common\alloc_replace.c:2710]
+Note: # 1 main    
+Note: instruction: mov    (%rax) -> %rax
+
+Error #25: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11aeabe4-0x0000020f11aeabe8 4 byte(s)
+# 0 main    
+Note: @0:02:02.002 in thread 8716
+Note: 0x0000020f11aeabe4-0x0000020f11aeabe8 overlaps memory 0x0000020f11aeabe0-0x0000020f11aeabec that was freed here:
+Note: # 0 replace_free               [D:\a\drmemory\drmemory\common\alloc_replace.c:2710]
+Note: # 1 main    
+Note: instruction: mov    (%rax) -> %eax
+
+Error #26: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11ae8988-0x0000020f11ae8990 8 byte(s)
+# 0 main    
+Note: @0:02:02.002 in thread 8716
+Note: prev lower malloc:  0x0000020f11ae87d0-0x0000020f11ae88d0
+Note: 0x0000020f11ae8988-0x0000020f11ae8990 overlaps memory 0x0000020f11ae88f0-0x0000020f11aea830 that was freed here:
+Note: # 0 replace_free               [D:\a\drmemory\drmemory\common\alloc_replace.c:2710]
+Note: # 1 main    
+Note: instruction: mov    (%rax) -> %rax
+
+Error #27: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11aeabe4-0x0000020f11aeabe8 4 byte(s)
+# 0 main    
+Note: @0:02:02.002 in thread 8716
+Note: 0x0000020f11aeabe4-0x0000020f11aeabe8 overlaps memory 0x0000020f11aeabe0-0x0000020f11aeabec that was freed here:
+Note: # 0 replace_free               [D:\a\drmemory\drmemory\common\alloc_replace.c:2710]
+Note: # 1 main    
+Note: instruction: mov    (%rax) -> %eax
+
+Error #28: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11ae8988-0x0000020f11ae8990 8 byte(s)
+# 0 main    
+Note: @0:02:02.002 in thread 8716
+Note: prev lower malloc:  0x0000020f11ae87d0-0x0000020f11ae88d0
+Note: 0x0000020f11ae8988-0x0000020f11ae8990 overlaps memory 0x0000020f11ae88f0-0x0000020f11aea830 that was freed here:
+Note: # 0 replace_free               [D:\a\drmemory\drmemory\common\alloc_replace.c:2710]
+Note: # 1 main    
+Note: instruction: mov    (%rax) -> %rax
+
+Error #29: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11aeabe0-0x0000020f11aeabe4 4 byte(s)
+# 0 main    
+Note: @0:02:02.002 in thread 8716
+Note: 0x0000020f11aeabe0-0x0000020f11aeabe4 overlaps memory 0x0000020f11aeabe0-0x0000020f11aeabec that was freed here:
+Note: # 0 replace_free               [D:\a\drmemory\drmemory\common\alloc_replace.c:2710]
+Note: # 1 main    
+Note: instruction: mov    (%rax) -> %eax
+
+Error #30: UNADDRESSABLE ACCESS: reading 0x0000020f585f9070-0x0000020f585f9074 4 byte(s)
+# 0 main    
+Note: @0:02:02.008 in thread 8716
+Note: instruction: mov    (%rax) -> %r8d
+
+Error #31: UNINITIALIZED READ: reading 0x0000008ec7bfe2e0-0x0000008ec7bfe340 96 byte(s) within 0x0000008ec7bfe240-0x0000008ec7bfe440
+# 0 ntdll.dll!RcContinueExit
+# 1 ntdll.dll!RtlUnwindEx
+# 2 ntdll.dll!RtlUserThreadStart
+Note: @0:02:02.941 in thread 8716
+Note: instruction: fxrstor 0x00000100(%rcx)
+
+Error #32: UNINITIALIZED READ: reading 0x0000008ec7bfe0aa-0x0000008ec7bfe0b0 6 byte(s) within 0x0000008ec7bfe0a0-0x0000008ec7bfe0c8
+# 0 ntdll.dll!RcContinueExit
+# 1 ntdll.dll!RtlUnwindEx
+# 2 ntdll.dll!RtlUserThreadStart
+Note: @0:02:02.941 in thread 8716
+Note: instruction: iret   %rsp (%rsp) -> %rsp
+
+Error #33: LEAK 151876 direct bytes 0x0000020d0f6d0030-0x0000020d0f6f5174 + 0 indirect bytes
+# 0 replace_malloc                                [D:\a\drmemory\drmemory\common\alloc_replace.c:2580]
+# 1 stbi__malloc
+# 2 stbi__malloc_mad3
+# 3 load_jpeg_image
+# 4 stbi__jpeg_load
+# 5 stbi__load_main
+# 6 stbi__load_and_postprocess_8bit
+# 7 stbi_load_from_file
+# 8 stbi_load
+# 9 image_load
+#10 main    
+
+Error #34: LEAK 151876 direct bytes 0x0000020f115d0030-0x0000020f115f5174 + 0 indirect bytes
+# 0 replace_malloc                                [D:\a\drmemory\drmemory\common\alloc_replace.c:2580]
+# 1 stbi__malloc
+# 2 stbi__malloc_mad3
+# 3 load_jpeg_image
+# 4 stbi__jpeg_load
+# 5 stbi__load_main
+# 6 stbi__load_and_postprocess_8bit
+# 7 stbi_load_from_file
+# 8 stbi_load
+# 9 image_load
+#10 main    
+
+Error #35: POSSIBLE LEAK 16 direct bytes 0x0000020f11a10350-0x0000020f11a10360 + 0 indirect bytes
+# 0 replace_malloc                                [D:\a\drmemory\drmemory\common\alloc_replace.c:2580]
+# 1 __emutls_get_address
+# 2 stbi__err
+# 3 stbi__check_png_header
+# 4 stbi__png_test
+# 5 stbi__load_main
+# 6 stbi__load_and_postprocess_8bit
+# 7 stbi_load_from_file
+# 8 stbi_load
+# 9 image_load
+#10 main    
+
+Error #36: POSSIBLE LEAK 12 direct bytes 0x0000020f11a2ea20-0x0000020f11a2ea2c + 0 indirect bytes
+# 0 replace_malloc                                [D:\a\drmemory\drmemory\common\alloc_replace.c:2580]
+# 1 __emutls_get_address
+# 2 stbi__load_and_postprocess_8bit
+# 3 stbi_load_from_file
+# 4 stbi_load
+# 5 image_load
+# 6 main    
+
+Error #37: LEAK 4000 direct bytes 0x0000020f11a4d0f0-0x0000020f11a4e090 + 0 indirect bytes
+# 0 replace_malloc               [D:\a\drmemory\drmemory\common\alloc_replace.c:2580]
+# 1 main    
+
+Error #38: LEAK 4000 direct bytes 0x0000020f11a4e0b0-0x0000020f11a4f050 + 0 indirect bytes
+# 0 replace_malloc               [D:\a\drmemory\drmemory\common\alloc_replace.c:2580]
+# 1 main    
+
+Error #39: LEAK 4000 direct bytes 0x0000020f11a4f070-0x0000020f11a50010 + 0 indirect bytes
+# 0 replace_malloc               [D:\a\drmemory\drmemory\common\alloc_replace.c:2580]
+# 1 main    
+
+Error #40: LEAK 4000 direct bytes 0x0000020f11a50030-0x0000020f11a50fd0 + 0 indirect bytes
+# 0 replace_malloc               [D:\a\drmemory\drmemory\common\alloc_replace.c:2580]
+# 1 main    
+
+Error #41: LEAK 8000 direct bytes 0x0000020f11a58030-0x0000020f11a59f70 + 256000 indirect bytes
+# 0 replace_malloc               [D:\a\drmemory\drmemory\common\alloc_replace.c:2580]
+# 1 matrix_zeros
+# 2 main    
+
+Error #42: LEAK 8000 direct bytes 0x0000020f11aa0490-0x0000020f11aa23d0 + 256000 indirect bytes
+# 0 replace_malloc               [D:\a\drmemory\drmemory\common\alloc_replace.c:2580]
+# 1 matrix_zeros
+# 2 main    
+
+Error #43: LEAK 151875 direct bytes 0x0000020f11e10030-0x0000020f11e35173 + 0 indirect bytes
+# 0 replace_malloc                     [D:\a\drmemory\drmemory\common\alloc_replace.c:2580]
+# 1 image_to_gray_vector
+# 2 main    
+
+Error #44: LEAK 151875 direct bytes 0x0000020f11e40030-0x0000020f11e65173 + 0 indirect bytes
+# 0 replace_malloc                     [D:\a\drmemory\drmemory\common\alloc_replace.c:2580]
+# 1 image_to_gray_vector
+# 2 main    
+
+Error #45: LEAK 303750 direct bytes 0x0000020f11e70030-0x0000020f11eba2b6 + 0 indirect bytes
+# 0 replace_malloc               [D:\a\drmemory\drmemory\common\alloc_replace.c:2580]
+# 1 vec_zeros
+# 2 main    
+
+===========================================================================
+FINAL SUMMARY:
+
+DUPLICATE ERROR COUNTS:
+	Error #   1:      2
+	Error #   2:   5400
+	Error #   3:   2700
+	Error #   4:   5400
+	Error #   5:   2700
+	Error #   6: 185600
+	Error #   7: 185600
+	Error #   8: 185600
+	Error #   9: 185600
+	Error #  10: 189952
+	Error #  11: 189952
+	Error #  12: 189952
+	Error #  13: 189952
+	Error #  14:     20
+	Error #  15:     20
+	Error #  31:      2
+	Error #  32:      3
+
+SUPPRESSIONS USED:
+
+ERRORS FOUND:
+     22 unique, 16257 total unaddressable access(es)
+     10 unique, 1502213 total uninitialized access(es)
+      0 unique,     0 total invalid heap argument(s)
+      0 unique,     0 total GDI usage error(s)
+      0 unique,     0 total handle leak(s)
+      0 unique,     0 total warning(s)
+     11 unique,    11 total, 1455252 byte(s) of leak(s)
+      2 unique,     2 total,     28 byte(s) of possible leak(s)
+ERRORS IGNORED:
+      5 potential error(s) (suspected false positives)
+         (details: C:\Users\Workstation\Documents\rubenh\CUDAvision\tests\logs\drmemory\DrMemory-main.exe.13040.000\potential_errors.txt)
+      1 potential leak(s) (suspected false positives)
+         (details: C:\Users\Workstation\Documents\rubenh\CUDAvision\tests\logs\drmemory\DrMemory-main.exe.13040.000\potential_errors.txt)
+     19 unique,    19 total,   6911 byte(s) of still-reachable allocation(s)
+         (re-run with "-show_reachable" for details)
+Details: C:\Users\Workstation\Documents\rubenh\CUDAvision\tests\logs\drmemory\DrMemory-main.exe.13040.000\results.txt

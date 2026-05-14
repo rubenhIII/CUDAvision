@@ -20,8 +20,18 @@ unsigned char Color_RGB[COLOR_COUNT][3] = {
 unsigned char** image_zeros(int width, int height)
 {
     unsigned char** image = (unsigned char **) malloc (sizeof(unsigned char *) * height);
+    if (image == NULL) {
+        fprintf(stderr, "ERROR: Memory cannot be allocated");
+        return NULL;
+    }
     for (int i = 0; i < height; i++) {
         image[i] = (unsigned char*) malloc (sizeof(unsigned char) * width);
+        if (image[i] == NULL) {
+            fprintf(stderr, "ERROR: Memory cannot be allocated");
+            for (int j = 0; j < i; j++) free(image[j]);
+            free(image);
+            return NULL;
+        }
         for (int j = 0; j < width; j++) {
             image[i][j] = 0;
         }
@@ -32,8 +42,18 @@ unsigned char** image_zeros(int width, int height)
 unsigned char ** matrix_zeros(int rows, int columns)
 {
     unsigned char** image = (unsigned char **) malloc (sizeof(unsigned char *) * rows);
+    if (image == NULL) {
+        fprintf(stderr, "ERROR: Memory cannot be allocated");
+        return NULL;
+    }
     for (int i = 0; i < rows; i++) {
         image[i] = (unsigned char*) malloc (sizeof(unsigned char) * columns);
+        if (image[i] == NULL) {
+            fprintf(stderr, "ERROR: Memory cannot be allocated");
+            for (int j = 0; j < i; j++) free(image[j]);
+            free(image);
+            return NULL;
+        }
         for (int j = 0; j < columns; j++) {
             image[i][j] = 0;
         }
@@ -44,8 +64,18 @@ unsigned char ** matrix_zeros(int rows, int columns)
 double ** matrix_zeros_d(int rows, int columns)
 {
     double** image = (double **) malloc (sizeof(double *) * rows);
+    if (image == NULL) {
+        fprintf(stderr, "ERROR: Memory cannot be allocated");
+        return NULL;
+    }
     for (int i = 0; i < rows; i++) {
         image[i] = (double*) malloc (sizeof(double) * columns);
+        if (image[i] == NULL) {
+            fprintf(stderr, "ERROR: Memory cannot be allocated");
+            for (int j = 0; j < i; j++) free(image[j]);
+            free(image);
+            return NULL;
+        }
         for (int j = 0; j < columns; j++) {
             image[i][j] = 0;
         }
@@ -87,6 +117,10 @@ void image_print(unsigned char **image, int width, int height)
 unsigned char * vec_zeros(int len)
 {
     unsigned char * out = (unsigned char*) malloc(sizeof(unsigned char) * len);
+    if (out == NULL) {
+        fprintf(stderr, "ERROR: Memory cannot be allocated");
+        return NULL;
+    }
     for (int i = 0; i < len ; i++) out[i] = 0;
     return out;
 }
@@ -109,6 +143,10 @@ unsigned char* image_to_gray_vector(unsigned char *image, int width, int height)
     // Evitando el punto flotante (77 * image[idx + 0] + 150 * image[idx + 1] + 29 * image[idx + 2]) >> 8;
     if (!image) return NULL;
     unsigned char *gray_vector = (unsigned char *) malloc (sizeof(unsigned char) * 3 * width * height);
+    if (gray_vector == NULL) {
+        fprintf(stderr, "ERROR: Memory cannot be allocated");
+        return NULL;
+    }
     if (!gray_vector) return NULL;
     unsigned char gray;
     for (int y = 0; y < height; y++) {
@@ -129,16 +167,19 @@ unsigned char* image_to_gray_vector(unsigned char *image, int width, int height)
 unsigned char** image_rgb_channel(unsigned char *rgb_vector, int vec_size, int width, int height, const char channel)
 {
     if (vec_size / 3 != width * height) {
-        perror("Error image_rgb_channel: RGB vector size and height x width mismatch");
+        fprintf(stderr, "Error: image_rgb_channel: RGB vector size and height x width mismatch");
         return NULL;
     }
+    
     unsigned char **image_channel = image_zeros(width, height);
+    if (image_channel == NULL) return NULL;
+
     int index = 0;
     if (channel == 'r') index = 0;
     else if (channel == 'g') index = 1;
     else if (channel == 'b') index = 2;
     else {
-        perror("Error image_rgb_channel: Channel not valid.");
+        fprintf(stderr, "Error: image_rgb_channel: Channel not valid.");
         return NULL;
     }
 
@@ -154,6 +195,10 @@ unsigned char** image_rgb_channel(unsigned char *rgb_vector, int vec_size, int w
 unsigned char* image_rgb_to_vector(unsigned char **r, unsigned char **g, unsigned char **b, int width, int height)
 {
     unsigned char *rgb_vector = (unsigned char *) malloc (sizeof(unsigned char) * 3 * width * height);
+    if (rgb_vector == NULL) {
+        fprintf(stderr, "ERROR: Memory cannot be allocate");
+        return NULL;
+    }
     
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
@@ -178,6 +223,11 @@ void image_show(unsigned char *rgb_vector, int width, int height)
 {
     unsigned int r, g, b;
     unsigned int *buf = (unsigned int *) malloc (sizeof(unsigned int) * width * height);
+    if (buf == NULL) {
+        fprintf(stderr, "ERROR: Memory cannot be allocate");
+        return;
+    }
+
     struct fenster f = { .title = "CUDAvision", .width = width, .height = height, .buf = buf };
     fenster_open(&f);
     while (fenster_loop(&f) == 0) {
@@ -201,6 +251,11 @@ void image_show(unsigned char *rgb_vector, int width, int height)
 unsigned int* image_hist(unsigned char *gray_image, int width, int height)
 {
     unsigned int *hist = (unsigned int *) malloc (sizeof(unsigned int) * BIT_DEPTH);
+    if (hist == NULL) {
+        fprintf(stderr, "ERROR: Memory cannot be allocate");
+        return NULL;
+    }
+
     for (int i = 0; i < BIT_DEPTH; i++) hist[i] = 0;
     unsigned char index = 0;
 
@@ -216,6 +271,11 @@ unsigned int* image_hist(unsigned char *gray_image, int width, int height)
 float* image_hist_norm(unsigned char *gray_image, int width, int height)
 {
     float *hist = (float *) malloc (sizeof(float) * BIT_DEPTH);
+    if (hist == NULL) {
+        fprintf(stderr, "ERROR: Memory cannot be allocate");
+        return NULL;
+    }
+
     float step = 1.0 / (width * height);
     for (int i = 0; i < BIT_DEPTH; i++) hist[i] = 0;
     unsigned char index = 0;

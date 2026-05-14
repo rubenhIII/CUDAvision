@@ -1,0 +1,126 @@
+Dr. Memory version 2.6.0 build 0 built on Sep 21 2023 17:38:58
+Dr. Memory errors that are likely to be false positives, for pid 13040: "main.exe"
+These errors matched the blocklist ',C:\WINDOWS*.d??' for 4 frames.
+Run with -lib_blocklist_frames 0 to treat these as regular errors.
+If these are all false positives and your focus is unaddressable errors, consider running with -light to skip all uninitialized reads and leaks for higher performance.
+
+Potential Error #1: UNINITIALIZED READ: reading 0x0000008ec7bfd844-0x0000008ec7bfd848 4 byte(s) within 0x0000008ec7bfd840-0x0000008ec7bfd848
+# 0 system call NtQueryWnfStateNameInformation parameter value #4
+# 1 ntdll.dll!SignalStartWerSvc
+# 2 ntdll.dll!SendMessageToWERService
+# 3 ntdll.dll!ReportExceptionInternal
+# 4 KERNEL32.dll!WerpReportFaultInternal
+# 5 KERNEL32.dll!WerpReportFault
+# 6 KERNELBASE.dll!UnhandledExceptionFilter
+# 7 ntdll.dll!RtlUserThreadStart$filt$0
+# 8 ntdll.dll!_C_specific_handler
+# 9 ntdll.dll!RtlpExecuteHandlerForException
+#10 ntdll.dll!RtlDispatchException
+#11 ntdll.dll!RtlUserThreadStart
+Note: @0:02:02.171 in thread 8716
+
+Potential Error #2: LEAK 256 direct bytes 0x0000020f11610690-0x0000020f11610790 + 0 indirect bytes
+# 0 replace_RtlAllocateHeap                [D:\a\drmemory\drmemory\common\alloc_replace.c:3772]
+# 1 ucrtbase.dll!malloc_base              +0x35     (0x00007ffc25f0fde6 <ucrtbase.dll+0xfde6>)
+# 2 ucrtbase.dll!realloc_base             +0x54     (0x00007ffc25f116b5 <ucrtbase.dll+0x116b5>)
+# 3 ucrtbase.dll!strtol                   +0x14d    (0x00007ffc25f124de <ucrtbase.dll+0x124de>)
+# 4 ucrtbase.dll!register_onexit_function +0x253    (0x00007ffc25f12844 <ucrtbase.dll+0x12844>)
+# 5 ucrtbase.dll!register_onexit_function +0xea     (0x00007ffc25f126db <ucrtbase.dll+0x126db>)
+# 6 ucrtbase.dll!register_onexit_function +0x9f     (0x00007ffc25f12690 <ucrtbase.dll+0x12690>)
+# 7 __do_global_ctors
+# 8 __tmainCRTStartup
+# 9 .l_start
+#10 KERNEL32.dll!BaseThreadInitThunk
+
+Potential Error #3: HANDLE LEAK: KERNEL handle 0x0000000000000118 and 0 similar handle(s) were opened but not closed:
+# 0 system call NtCreateSemaphore  
+# 1 KERNELBASE.dll!CreateSemaphoreExW
+# 2 KERNEL32.dll!CreateSemaphoreExA
+# 3 KERNEL32.dll!CreateSemaphoreA
+# 4 libwinpthread-1.dll!?                        +0x0      (0x00007ffc1c9d2130 <libwinpthread-1.dll+0x2130>)
+# 5 libwinpthread-1.dll!?                        +0x0      (0x00007ffc1c9d3fb0 <libwinpthread-1.dll+0x3fb0>)
+# 6 libwinpthread-1.dll!?                        +0x0      (0x00007ffc1c9d4058 <libwinpthread-1.dll+0x4058>)
+# 7 libwinpthread-1.dll!?                        +0x0      (0x00007ffc1c9d40e5 <libwinpthread-1.dll+0x40e5>)
+# 8 libwinpthread-1.dll!?                        +0x0      (0x00007ffc1c9d4674 <libwinpthread-1.dll+0x4674>)
+# 9 libwinpthread-1.dll!?                        +0x0      (0x00007ffc1c9d663c <libwinpthread-1.dll+0x663c>)
+#10 emutls_init
+#11 libwinpthread-1.dll!?                        +0x0      (0x00007ffc1c9d6534 <libwinpthread-1.dll+0x6534>)
+#12 __emutls_get_address
+#13 stbi__err
+#14 stbi__check_png_header
+#15 stbi__png_test
+#16 stbi__load_main
+#17 stbi__load_and_postprocess_8bit
+#18 stbi_load_from_file
+#19 stbi_load
+Note: @0:02:03.111 in thread 8716
+
+Potential Error #4: HANDLE LEAK: KERNEL handle 0x000000000000011c and 0 similar handle(s) were opened but not closed:
+# 0 system call NtCreateEvent      
+# 1 KERNELBASE.dll!CreateEventA  
+# 2 libwinpthread-1.dll!?                        +0x0      (0x00007ffc1c9d602c <libwinpthread-1.dll+0x602c>)
+# 3 libwinpthread-1.dll!?                        +0x0      (0x00007ffc1c9d65f5 <libwinpthread-1.dll+0x65f5>)
+# 4 __emutls_get_address
+# 5 stbi__err
+# 6 stbi__check_png_header
+# 7 stbi__png_test
+# 8 stbi__load_main
+# 9 stbi__load_and_postprocess_8bit
+#10 stbi_load_from_file
+#11 stbi_load
+#12 image_load
+#13 main    
+Note: @0:02:03.112 in thread 8716
+
+Potential Error #5: HANDLE LEAK: KERNEL handle 0x0000000000000120 and 0 similar handle(s) were opened but not closed:
+# 0 system call NtDuplicateObject  
+# 1 KERNELBASE.dll!DuplicateHandle
+# 2 libwinpthread-1.dll!?                        +0x0      (0x00007ffc1c9d60a6 <libwinpthread-1.dll+0x60a6>)
+# 3 libwinpthread-1.dll!?                        +0x0      (0x00007ffc1c9d65f5 <libwinpthread-1.dll+0x65f5>)
+# 4 __emutls_get_address
+# 5 stbi__err
+# 6 stbi__check_png_header
+# 7 stbi__png_test
+# 8 stbi__load_main
+# 9 stbi__load_and_postprocess_8bit
+#10 stbi_load_from_file
+#11 stbi_load
+#12 image_load
+#13 main    
+Note: @0:02:03.112 in thread 8716
+
+Potential Error #6: HANDLE LEAK: KERNEL handle 0x0000000000000128 and 0 similar handle(s) were opened but not closed:
+# 0 system call NtCreateSemaphore  
+# 1 KERNELBASE.dll!CreateSemaphoreExW
+# 2 KERNEL32.dll!CreateSemaphoreExA
+# 3 KERNEL32.dll!CreateSemaphoreA
+# 4 libwinpthread-1.dll!?                        +0x0      (0x00007ffc1c9d2146 <libwinpthread-1.dll+0x2146>)
+# 5 libwinpthread-1.dll!?                        +0x0      (0x00007ffc1c9d3fb0 <libwinpthread-1.dll+0x3fb0>)
+# 6 libwinpthread-1.dll!?                        +0x0      (0x00007ffc1c9d4058 <libwinpthread-1.dll+0x4058>)
+# 7 libwinpthread-1.dll!?                        +0x0      (0x00007ffc1c9d40e5 <libwinpthread-1.dll+0x40e5>)
+# 8 libwinpthread-1.dll!?                        +0x0      (0x00007ffc1c9d4674 <libwinpthread-1.dll+0x4674>)
+# 9 libwinpthread-1.dll!?                        +0x0      (0x00007ffc1c9d663c <libwinpthread-1.dll+0x663c>)
+#10 emutls_init
+#11 libwinpthread-1.dll!?                        +0x0      (0x00007ffc1c9d6534 <libwinpthread-1.dll+0x6534>)
+#12 __emutls_get_address
+#13 stbi__err
+#14 stbi__check_png_header
+#15 stbi__png_test
+#16 stbi__load_main
+#17 stbi__load_and_postprocess_8bit
+#18 stbi_load_from_file
+#19 stbi_load
+Note: @0:02:03.112 in thread 8716
+
+DUPLICATE POTENTIAL ERROR COUNTS:
+
+POTENTIAL ERRORS FOUND:
+      0 unique,     0 total potential unaddressable access(es)
+      1 unique,     1 total potential uninitialized access(es)
+      0 unique,     0 total potential invalid heap argument(s)
+      0 unique,     0 total potential GDI usage error(s)
+      4 unique,     4 total potential handle leak(s)
+      0 unique,     0 total potential warning(s)
+      1 unique,     1 total,    256 byte(s) of potential leak(s)
+      0 unique,     0 total,      0 byte(s) of potential possible leak(s)
+Details: C:\Users\Workstation\Documents\rubenh\CUDAvision\tests\logs\drmemory\DrMemory-main.exe.13040.000\potential_errors.txt

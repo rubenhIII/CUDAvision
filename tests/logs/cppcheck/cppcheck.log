@@ -1,0 +1,96 @@
+tools\image_tools.c:150:9: style: The if condition is the same as the previous if condition [duplicateCondition]
+    if (!gray_vector) return NULL;
+        ^
+tools\image_tools.c:146:21: note: First condition
+    if (gray_vector == NULL) {
+                    ^
+tools\image_tools.c:150:9: note: Second condition
+    if (!gray_vector) return NULL;
+        ^
+tools\image_tools.c:233:29: style: Condition 'fenster_loop(&f)==0' is always true [knownConditionTrueFalse]
+    while (fenster_loop(&f) == 0) {
+                            ^
+tools\image_tools.c:233:24: note: Calling function 'fenster_loop' returns 0
+    while (fenster_loop(&f) == 0) {
+                       ^
+tools\image_tools.c:233:29: note: Condition 'fenster_loop(&f)==0' is always true
+    while (fenster_loop(&f) == 0) {
+                            ^
+tools\image_tools.c:151:19: style: The scope of the variable 'gray' can be reduced. [variableScope]
+    unsigned char gray;
+                  ^
+tools\image_tools.c:224:18: style: The scope of the variable 'r' can be reduced. [variableScope]
+    unsigned int r, g, b;
+                 ^
+tools\image_tools.c:224:21: style: The scope of the variable 'g' can be reduced. [variableScope]
+    unsigned int r, g, b;
+                    ^
+tools\image_tools.c:224:24: style: The scope of the variable 'b' can be reduced. [variableScope]
+    unsigned int r, g, b;
+                       ^
+tools\image_tools.c:260:19: style: The scope of the variable 'index' can be reduced. [variableScope]
+    unsigned char index = 0;
+                  ^
+tools\image_tools.c:281:19: style: The scope of the variable 'index' can be reduced. [variableScope]
+    unsigned char index = 0;
+                  ^
+tools\image_tools.c:308:11: style: The scope of the variable 'w0' can be reduced. [variableScope]
+    float w0, w1, mu0, mu1, var = 0, var_aux = 0;
+          ^
+tools\image_tools.c:308:15: style: The scope of the variable 'w1' can be reduced. [variableScope]
+    float w0, w1, mu0, mu1, var = 0, var_aux = 0;
+              ^
+tools\image_tools.c:308:19: style: The scope of the variable 'mu0' can be reduced. [variableScope]
+    float w0, w1, mu0, mu1, var = 0, var_aux = 0;
+                  ^
+tools\image_tools.c:308:24: style: The scope of the variable 'mu1' can be reduced. [variableScope]
+    float w0, w1, mu0, mu1, var = 0, var_aux = 0;
+                       ^
+tools\image_tools.c:308:38: style: The scope of the variable 'var_aux' can be reduced. [variableScope]
+    float w0, w1, mu0, mu1, var = 0, var_aux = 0;
+                                     ^
+tools\image_tools.c:332:19: style: The scope of the variable 'value' can be reduced. [variableScope]
+    unsigned char value;
+                  ^
+tools\image_tools.c:139:52: style: Parameter 'image' can be declared as pointer to const [constParameterPointer]
+unsigned char* image_to_gray_vector(unsigned char *image, int width, int height)
+                                                   ^
+tools\image_tools.c:167:50: style: Parameter 'rgb_vector' can be declared as pointer to const [constParameterPointer]
+unsigned char** image_rgb_channel(unsigned char *rgb_vector, int vec_size, int width, int height, const char channel)
+                                                 ^
+tools\image_tools.c:222:32: style: Parameter 'rgb_vector' can be declared as pointer to const [constParameterPointer]
+void image_show(unsigned char *rgb_vector, int width, int height)
+                               ^
+tools\image_tools.c:251:41: style: Parameter 'gray_image' can be declared as pointer to const [constParameterPointer]
+unsigned int* image_hist(unsigned char *gray_image, int width, int height)
+                                        ^
+tools\image_tools.c:271:39: style: Parameter 'gray_image' can be declared as pointer to const [constParameterPointer]
+float* image_hist_norm(unsigned char *gray_image, int width, int height)
+                                      ^
+tools\image_tools.c:290:23: style: Parameter 'hist_norm' can be declared as pointer to const [constParameterPointer]
+float hist_cdf(float *hist_norm, unsigned int m, unsigned int n)
+                      ^
+tools\image_tools.c:297:24: style: Parameter 'hist_norm' can be declared as pointer to const [constParameterPointer]
+float hist_mean(float *hist_norm, unsigned int m, unsigned int n)
+                       ^
+tools\image_tools.c:393:34: style: Parameter 'image_0' can be declared as pointer to const [constParameterPointer]
+void image_hstack(unsigned char *image_0, unsigned char *image_1, unsigned char * image_out, int width, int height)
+                                 ^
+tools\image_tools.c:393:58: style: Parameter 'image_1' can be declared as pointer to const [constParameterPointer]
+void image_hstack(unsigned char *image_0, unsigned char *image_1, unsigned char * image_out, int width, int height)
+                                                         ^
+tools\image_tools.c:260:25: style: Variable 'index' is assigned a value that is never used. [unreadVariable]
+    unsigned char index = 0;
+                        ^
+tools\image_tools.c:262:17: style: Variable 'min_flag' is assigned a value that is never used. [unreadVariable]
+    int min_flag=0, max_flag=0;
+                ^
+tools\image_tools.c:262:29: style: Variable 'max_flag' is assigned a value that is never used. [unreadVariable]
+    int min_flag=0, max_flag=0;
+                            ^
+tools\image_tools.c:281:25: style: Variable 'index' is assigned a value that is never used. [unreadVariable]
+    unsigned char index = 0;
+                        ^
+tools\image_tools.c:308:46: style: Variable 'var_aux' is assigned a value that is never used. [unreadVariable]
+    float w0, w1, mu0, mu1, var = 0, var_aux = 0;
+                                             ^

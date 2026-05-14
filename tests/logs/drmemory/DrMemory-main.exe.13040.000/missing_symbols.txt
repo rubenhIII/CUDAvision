@@ -1,0 +1,4 @@
+C:\ProgramData\mingw64\mingw64\bin\libwinpthread-1.dll
+C:\WINDOWS\System32\gdi32full.dll
+C:\WINDOWS\System32\ucrtbase.dll
+C:\WINDOWS\System32\msvcp_win.dll

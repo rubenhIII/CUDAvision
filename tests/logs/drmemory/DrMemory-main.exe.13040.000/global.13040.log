@@ -1,0 +1,633 @@
+Dr. Memory version 2.6.0 build 0 built on Sep 21 2023 17:38:58
+start time: 3728683:23:29.693 == 19:23:29.693 05/14/2026
+Recorded 124 suppression(s) from default C:\Program Files (x86)\Dr. Memory\bin64\suppress-default.txt
+Using system call file C:\Users\Workstation\Documents\rubenh\CUDAvision\tests\logs\drmemory\symcache\syscalls_x64.txt
+Syscall mismatch detected.  Running on unknown kernel version!
+WARNING: duplicate entry added to name2num_table: WOWCLEANUP
+new thread #0 id=8716
+
+module load event: "dynamorio.dll" 0x0000000071000000-0x00000000711c9000 modid: 1 C:\Program Files (x86)\Dr. Memory\dynamorio\lib64\release\dynamorio.dll
+
+module load event: "drmemorylib.dll" 0x00007ff69daf0000-0x00007ff69dda9000 modid: 2 C:\Program Files (x86)\Dr. Memory\bin64\release\drmemorylib.dll
+
+module load event: "main.exe" 0x00007ff70da90000-0x00007ff70dae9000 modid: 3 C:\Users\Workstation\Documents\rubenh\CUDAvision\main.exe
+
+module load event: "libwinpthread-1.dll" 0x00007ffc1c9d0000-0x00007ffc1c9e7000 modid: 4 C:\ProgramData\mingw64\mingw64\bin\libwinpthread-1.dll
+WARNING: unable to load symbols for C:\ProgramData\mingw64\mingw64\bin\libwinpthread-1.dll
+
+module load event: "gdi32full.dll" 0x00007ffc25d00000-0x00007ffc25e19000 modid: 5 C:\WINDOWS\System32\gdi32full.dll
+WARNING: unable to load symbols for C:\WINDOWS\System32\gdi32full.dll
+
+module load event: "win32u.dll" 0x00007ffc25e20000-0x00007ffc25e42000 modid: 6 C:\WINDOWS\System32\win32u.dll
+
+module load event: "ucrtbase.dll" 0x00007ffc25f00000-0x00007ffc26000000 modid: 7 C:\WINDOWS\System32\ucrtbase.dll
+WARNING: unable to load symbols for C:\WINDOWS\System32\ucrtbase.dll
+
+module load event: "msvcp_win.dll" 0x00007ffc26000000-0x00007ffc2609d000 modid: 8 C:\WINDOWS\System32\msvcp_win.dll
+WARNING: unable to load symbols for C:\WINDOWS\System32\msvcp_win.dll
+
+module load event: "KERNELBASE.dll" 0x00007ffc26200000-0x00007ffc264f6000 modid: 9 C:\WINDOWS\System32\KERNELBASE.dll
+
+module load event: "USER32.dll" 0x00007ffc27490000-0x00007ffc27631000 modid: 10 C:\WINDOWS\System32\USER32.dll
+WARNING: error finding UserConnectToServer syscall #
+module load event: "GDI32.dll" 0x00007ffc27810000-0x00007ffc2783b000 modid: 11 C:\WINDOWS\System32\GDI32.dll
+
+module load event: "IMM32.dll" 0x00007ffc27840000-0x00007ffc2786f000 modid: 12 C:\WINDOWS\System32\IMM32.DLL
+
+module load event: "KERNEL32.dll" 0x00007ffc28440000-0x00007ffc28502000 modid: 13 C:\WINDOWS\System32\KERNEL32.DLL
+
+module load event: "ntdll.dll" 0x00007ffc28670000-0x00007ffc28868000 modid: 14 C:\WINDOWS\SYSTEM32\ntdll.dll
+WARNING: fail to find call to RtlFreeStringRoutine
+WARNING: fail to find call to RtlFreeStringRoutine
+WARNING: fail to find call to RtlFreeStringRoutine
+
+NEW THREAD: main thread 8716
+
+
+Error #1: UNADDRESSABLE ACCESS beyond top of stack: reading 0x0000008ec7bff4a0-0x0000008ec7bff4a8 8 byte(s)
+# 0 ___chkstk_ms (0x00007ff70dab010b <main.exe+0x2010b>) modid:3
+# 1 _pei386_runtime_relocator (0x00007ff70daaf4b6 <main.exe+0x1f4b6>) modid:3
+# 2 __tmainCRTStartup (0x00007ff70da91113 <main.exe+0x1113>) modid:3
+# 3 .l_start (0x00007ff70da91406 <main.exe+0x1406>) modid:3
+# 4 KERNEL32.dll!BaseThreadInitThunk (0x00007ffc28457374 <KERNEL32.dll+0x17374>) modid:13
+Note: @0:00:00.544 in thread 8716
+Note: 0x0000008ec7bff4a0 refers to 696 byte(s) beyond the top of the stack 0x0000008ec7bff758
+Note: instruction: or     $0x0000000000000000 (%rcx) -> (%rcx)
+	error end
+
+Error #2: UNADDRESSABLE ACCESS beyond top of stack: reading 0x0000008ec7bfe098-0x0000008ec7bfe0a0 8 byte(s)
+# 0 ___chkstk_ms (0x00007ff70dab00f6 <main.exe+0x200f6>) modid:3
+# 1 stbi__idct_simd (0x00007ff70da96923 <main.exe+0x6923>) modid:3
+# 2 stbi__parse_entropy_coded_data (0x00007ff70da9b172 <main.exe+0xb172>) modid:3
+# 3 stbi__decode_jpeg_image (0x00007ff70da9d4fd <main.exe+0xd4fd>) modid:3
+# 4 load_jpeg_image (0x00007ff70da9f793 <main.exe+0xf793>) modid:3
+# 5 stbi__jpeg_load (0x00007ff70daa07b9 <main.exe+0x107b9>) modid:3
+# 6 stbi__load_main (0x00007ff70da9238b <main.exe+0x238b>) modid:3
+# 7 stbi__load_and_postprocess_8bit (0x00007ff70da92842 <main.exe+0x2842>) modid:3
+# 8 stbi_load_from_file (0x00007ff70da92c4d <main.exe+0x2c4d>) modid:3
+# 9 stbi_load (0x00007ff70da92bc9 <main.exe+0x2bc9>) modid:3
+#10 image_load (0x00007ff70daacc85 <main.exe+0x1cc85>) modid:3
+#11 main     (0x00007ff70da91476 <main.exe+0x1476>) modid:3
+Note: @0:00:00.874 in thread 8716
+Note: 0x0000008ec7bfe098 refers to 4072 byte(s) beyond the top of the stack 0x0000008ec7bff080
+Note: instruction: or     $0x0000000000000000 (%rcx) -> (%rcx)
+	error end
+
+Error #3: UNADDRESSABLE ACCESS beyond top of stack: reading 0x0000008ec7bfc5f0-0x0000008ec7bfc5f8 8 byte(s)
+# 0 ___chkstk_ms (0x00007ff70dab010b <main.exe+0x2010b>) modid:3
+# 1 stbi__idct_simd (0x00007ff70da96923 <main.exe+0x6923>) modid:3
+# 2 stbi__parse_entropy_coded_data (0x00007ff70da9b172 <main.exe+0xb172>) modid:3
+# 3 stbi__decode_jpeg_image (0x00007ff70da9d4fd <main.exe+0xd4fd>) modid:3
+# 4 load_jpeg_image (0x00007ff70da9f793 <main.exe+0xf793>) modid:3
+# 5 stbi__jpeg_load (0x00007ff70daa07b9 <main.exe+0x107b9>) modid:3
+# 6 stbi__load_main (0x00007ff70da9238b <main.exe+0x238b>) modid:3
+# 7 stbi__load_and_postprocess_8bit (0x00007ff70da92842 <main.exe+0x2842>) modid:3
+# 8 stbi_load_from_file (0x00007ff70da92c4d <main.exe+0x2c4d>) modid:3
+# 9 stbi_load (0x00007ff70da92bc9 <main.exe+0x2bc9>) modid:3
+#10 image_load (0x00007ff70daacc85 <main.exe+0x1cc85>) modid:3
+#11 main     (0x00007ff70da91476 <main.exe+0x1476>) modid:3
+Note: @0:00:00.874 in thread 8716
+Note: 0x0000008ec7bfc5f0 refers to 10896 byte(s) beyond the top of the stack 0x0000008ec7bff080
+Note: instruction: or     $0x0000000000000000 (%rcx) -> (%rcx)
+	error end
+
+Error #4: UNADDRESSABLE ACCESS beyond top of stack: reading 0x0000008ec7bfe098-0x0000008ec7bfe0a0 8 byte(s)
+# 0 ___chkstk_ms (0x00007ff70dab00f6 <main.exe+0x200f6>) modid:3
+# 1 stbi__idct_simd (0x00007ff70da96923 <main.exe+0x6923>) modid:3
+# 2 stbi__parse_entropy_coded_data (0x00007ff70da9b172 <main.exe+0xb172>) modid:3
+# 3 stbi__decode_jpeg_image (0x00007ff70da9d4fd <main.exe+0xd4fd>) modid:3
+# 4 load_jpeg_image (0x00007ff70da9f793 <main.exe+0xf793>) modid:3
+# 5 libwinpthread-1.dll!?                   (0x00007ffc1c9d68f3 <libwinpthread-1.dll+0x68f3>) modid:4
+# 6 KERNEL32.dll!BaseThreadInitThunk (0x00007ffc28457374 <KERNEL32.dll+0x17374>) modid:13
+Note: @0:00:02.438 in thread 8716
+Note: 0x0000008ec7bfe098 refers to 4072 byte(s) beyond the top of the stack 0x0000008ec7bff080
+Note: instruction: or     $0x0000000000000000 (%rcx) -> (%rcx)
+	error end
+
+Error #5: UNADDRESSABLE ACCESS beyond top of stack: reading 0x0000008ec7bfc5f0-0x0000008ec7bfc5f8 8 byte(s)
+# 0 ___chkstk_ms (0x00007ff70dab010b <main.exe+0x2010b>) modid:3
+# 1 stbi__idct_simd (0x00007ff70da96923 <main.exe+0x6923>) modid:3
+# 2 stbi__parse_entropy_coded_data (0x00007ff70da9b172 <main.exe+0xb172>) modid:3
+# 3 stbi__decode_jpeg_image (0x00007ff70da9d4fd <main.exe+0xd4fd>) modid:3
+# 4 load_jpeg_image (0x00007ff70da9f793 <main.exe+0xf793>) modid:3
+# 5 libwinpthread-1.dll!?                   (0x00007ffc1c9d68f3 <libwinpthread-1.dll+0x68f3>) modid:4
+# 6 KERNEL32.dll!BaseThreadInitThunk (0x00007ffc28457374 <KERNEL32.dll+0x17374>) modid:13
+Note: @0:00:02.439 in thread 8716
+Note: 0x0000008ec7bfc5f0 refers to 10896 byte(s) beyond the top of the stack 0x0000008ec7bff080
+Note: instruction: or     $0x0000000000000000 (%rcx) -> (%rcx)
+	error end
+
+Error #6: UNINITIALIZED READ: reading 0x0000008ec7bff65c-0x0000008ec7bff660 4 byte(s)
+# 0 sample_point (0x00007ff70daae43f <main.exe+0x1e43f>) modid:3
+# 1 brief_descriptor (0x00007ff70daae568 <main.exe+0x1e568>) modid:3
+# 2 main     (0x00007ff70da916a5 <main.exe+0x16a5>) modid:3
+Note: @0:00:15.483 in thread 8716
+Note: instruction: cmp    0xfffffffc(%rbp) $0x00000000
+	error end
+
+Error #7: UNINITIALIZED READ: reading 0x0000008ec7bff65c-0x0000008ec7bff660 4 byte(s)
+# 0 sample_point (0x00007ff70daae43f <main.exe+0x1e43f>) modid:3
+# 1 brief_descriptor (0x00007ff70daae59e <main.exe+0x1e59e>) modid:3
+# 2 main     (0x00007ff70da916a5 <main.exe+0x16a5>) modid:3
+Note: @0:00:15.483 in thread 8716
+Note: instruction: cmp    0xfffffffc(%rbp) $0x00000000
+	error end
+
+Error #8: UNINITIALIZED READ: reading 0x0000008ec7bff65c-0x0000008ec7bff660 4 byte(s)
+# 0 sample_point (0x00007ff70daae43f <main.exe+0x1e43f>) modid:3
+# 1 brief_descriptor (0x00007ff70daae5d8 <main.exe+0x1e5d8>) modid:3
+# 2 main     (0x00007ff70da916a5 <main.exe+0x16a5>) modid:3
+Note: @0:00:15.483 in thread 8716
+Note: instruction: cmp    0xfffffffc(%rbp) $0x00000000
+	error end
+
+Error #9: UNINITIALIZED READ: reading 0x0000008ec7bff65c-0x0000008ec7bff660 4 byte(s)
+# 0 sample_point (0x00007ff70daae43f <main.exe+0x1e43f>) modid:3
+# 1 brief_descriptor (0x00007ff70daae612 <main.exe+0x1e612>) modid:3
+# 2 main     (0x00007ff70da916a5 <main.exe+0x16a5>) modid:3
+Note: @0:00:15.483 in thread 8716
+Note: instruction: cmp    0xfffffffc(%rbp) $0x00000000
+	error end
+new thread #1 id=10964
+new thread #2 id=21004
+new thread #3 id=15420
+
+Error #10: UNINITIALIZED READ: reading 0x0000008ec7bff65c-0x0000008ec7bff660 4 byte(s)
+# 0 sample_point (0x00007ff70daae43f <main.exe+0x1e43f>) modid:3
+# 1 brief_descriptor (0x00007ff70daae568 <main.exe+0x1e568>) modid:3
+# 2 main     (0x00007ff70da916ee <main.exe+0x16ee>) modid:3
+Note: @0:01:05.684 in thread 8716
+Note: instruction: cmp    0xfffffffc(%rbp) $0x00000000
+	error end
+
+Error #11: UNINITIALIZED READ: reading 0x0000008ec7bff65c-0x0000008ec7bff660 4 byte(s)
+# 0 sample_point (0x00007ff70daae43f <main.exe+0x1e43f>) modid:3
+# 1 brief_descriptor (0x00007ff70daae59e <main.exe+0x1e59e>) modid:3
+# 2 main     (0x00007ff70da916ee <main.exe+0x16ee>) modid:3
+Note: @0:01:05.684 in thread 8716
+Note: instruction: cmp    0xfffffffc(%rbp) $0x00000000
+	error end
+
+Error #12: UNINITIALIZED READ: reading 0x0000008ec7bff65c-0x0000008ec7bff660 4 byte(s)
+# 0 sample_point (0x00007ff70daae43f <main.exe+0x1e43f>) modid:3
+# 1 brief_descriptor (0x00007ff70daae5d8 <main.exe+0x1e5d8>) modid:3
+# 2 main     (0x00007ff70da916ee <main.exe+0x16ee>) modid:3
+Note: @0:01:05.684 in thread 8716
+Note: instruction: cmp    0xfffffffc(%rbp) $0x00000000
+	error end
+
+Error #13: UNINITIALIZED READ: reading 0x0000008ec7bff65c-0x0000008ec7bff660 4 byte(s)
+# 0 sample_point (0x00007ff70daae43f <main.exe+0x1e43f>) modid:3
+# 1 brief_descriptor (0x00007ff70daae612 <main.exe+0x1e612>) modid:3
+# 2 main     (0x00007ff70da916ee <main.exe+0x16ee>) modid:3
+Note: @0:01:05.684 in thread 8716
+Note: instruction: cmp    0xfffffffc(%rbp) $0x00000000
+	error end
+
+Error #14: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11ae88f0-0x0000020f11ae88f8 8 byte(s)
+# 0 main     (0x00007ff70da917f6 <main.exe+0x17f6>) modid:3
+Note: @0:02:01.958 in thread 8716
+Note: prev lower malloc:  0x0000020f11ae87d0-0x0000020f11ae88d0
+Note: 0x0000020f11ae88f0-0x0000020f11ae88f8 overlaps memory 0x0000020f11ae88f0-0x0000020f11aea830 that was freed here:
+Note: # 0 replace_free    [D:\a\drmemory\drmemory\common\alloc_replace.c:2710] (0x00007ff69db18e30 <drmemorylib.dll+0x28e30>) modid:2
+Note: # 1 main     (0x00007ff70da9175b <main.exe+0x175b>) modid:3
+Note: instruction: mov    (%rax) -> %rax
+	error end
+
+Error #15: UNADDRESSABLE ACCESS beyond heap bounds: reading 0x0000020f11a517f8-0x0000020f11a517fc 4 byte(s)
+# 0 main     (0x00007ff70da917fd <main.exe+0x17fd>) modid:3
+Note: @0:02:01.958 in thread 8716
+Note: prev lower malloc:  0x0000020f11a50030-0x0000020f11a50fd0
+Note: 0x0000020f11a517f8-0x0000020f11a517fc is 8 byte(s) beyond memory 0x0000020f11a50ff0-0x0000020f11a517f0 that was freed here:
+Note: # 0 replace_free    [D:\a\drmemory\drmemory\common\alloc_replace.c:2710] (0x00007ff69db18e30 <drmemorylib.dll+0x28e30>) modid:2
+Note: # 1 matrix_free_d (0x00007ff70daac58c <main.exe+0x1c58c>) modid:3
+Note: # 2 main     (0x00007ff70da91770 <main.exe+0x1770>) modid:3
+Note: instruction: mov    (%rax) -> %eax
+	error end
+
+Error #16: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11ae8988-0x0000020f11ae8990 8 byte(s)
+# 0 main     (0x00007ff70da9183b <main.exe+0x183b>) modid:3
+Note: @0:02:01.988 in thread 8716
+Note: prev lower malloc:  0x0000020f11ae87d0-0x0000020f11ae88d0
+Note: 0x0000020f11ae8988-0x0000020f11ae8990 overlaps memory 0x0000020f11ae88f0-0x0000020f11aea830 that was freed here:
+Note: # 0 replace_free    [D:\a\drmemory\drmemory\common\alloc_replace.c:2710] (0x00007ff69db18e30 <drmemorylib.dll+0x28e30>) modid:2
+Note: # 1 main     (0x00007ff70da9175b <main.exe+0x175b>) modid:3
+Note: instruction: mov    (%rax) -> %rax
+	error end
+
+Error #17: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11aeabe4-0x0000020f11aeabe8 4 byte(s)
+# 0 main     (0x00007ff70da91842 <main.exe+0x1842>) modid:3
+Note: @0:02:01.989 in thread 8716
+Note: 0x0000020f11aeabe4-0x0000020f11aeabe8 overlaps memory 0x0000020f11aeabe0-0x0000020f11aeabec that was freed here:
+Note: # 0 replace_free    [D:\a\drmemory\drmemory\common\alloc_replace.c:2710] (0x00007ff69db18e30 <drmemorylib.dll+0x28e30>) modid:2
+Note: # 1 main     (0x00007ff70da9173d <main.exe+0x173d>) modid:3
+Note: instruction: mov    (%rax) -> %ecx
+	error end
+
+Error #18: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11ae8988-0x0000020f11ae8990 8 byte(s)
+# 0 main     (0x00007ff70da9185b <main.exe+0x185b>) modid:3
+Note: @0:02:01.989 in thread 8716
+Note: prev lower malloc:  0x0000020f11ae87d0-0x0000020f11ae88d0
+Note: 0x0000020f11ae8988-0x0000020f11ae8990 overlaps memory 0x0000020f11ae88f0-0x0000020f11aea830 that was freed here:
+Note: # 0 replace_free    [D:\a\drmemory\drmemory\common\alloc_replace.c:2710] (0x00007ff69db18e30 <drmemorylib.dll+0x28e30>) modid:2
+Note: # 1 main     (0x00007ff70da9175b <main.exe+0x175b>) modid:3
+Note: instruction: mov    (%rax) -> %rax
+	error end
+
+Error #19: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11aeabe4-0x0000020f11aeabe8 4 byte(s)
+# 0 main     (0x00007ff70da91862 <main.exe+0x1862>) modid:3
+Note: @0:02:01.989 in thread 8716
+Note: 0x0000020f11aeabe4-0x0000020f11aeabe8 overlaps memory 0x0000020f11aeabe0-0x0000020f11aeabec that was freed here:
+Note: # 0 replace_free    [D:\a\drmemory\drmemory\common\alloc_replace.c:2710] (0x00007ff69db18e30 <drmemorylib.dll+0x28e30>) modid:2
+Note: # 1 main     (0x00007ff70da9173d <main.exe+0x173d>) modid:3
+Note: instruction: mov    (%rax) -> %r9d
+	error end
+
+Error #20: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11ae8988-0x0000020f11ae8990 8 byte(s)
+# 0 main     (0x00007ff70da9187c <main.exe+0x187c>) modid:3
+Note: @0:02:01.990 in thread 8716
+Note: prev lower malloc:  0x0000020f11ae87d0-0x0000020f11ae88d0
+Note: 0x0000020f11ae8988-0x0000020f11ae8990 overlaps memory 0x0000020f11ae88f0-0x0000020f11aea830 that was freed here:
+Note: # 0 replace_free    [D:\a\drmemory\drmemory\common\alloc_replace.c:2710] (0x00007ff69db18e30 <drmemorylib.dll+0x28e30>) modid:2
+Note: # 1 main     (0x00007ff70da9175b <main.exe+0x175b>) modid:3
+Note: instruction: mov    (%rax) -> %rax
+	error end
+
+Error #21: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11aeabe0-0x0000020f11aeabe4 4 byte(s)
+# 0 main     (0x00007ff70da9187f <main.exe+0x187f>) modid:3
+Note: @0:02:01.990 in thread 8716
+Note: 0x0000020f11aeabe0-0x0000020f11aeabe4 overlaps memory 0x0000020f11aeabe0-0x0000020f11aeabec that was freed here:
+Note: # 0 replace_free    [D:\a\drmemory\drmemory\common\alloc_replace.c:2710] (0x00007ff69db18e30 <drmemorylib.dll+0x28e30>) modid:2
+Note: # 1 main     (0x00007ff70da9173d <main.exe+0x173d>) modid:3
+Note: instruction: mov    (%rax) -> %r8d
+	error end
+
+Error #22: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11ae8988-0x0000020f11ae8990 8 byte(s)
+# 0 main     (0x00007ff70da91899 <main.exe+0x1899>) modid:3
+Note: @0:02:01.990 in thread 8716
+Note: prev lower malloc:  0x0000020f11ae87d0-0x0000020f11ae88d0
+Note: 0x0000020f11ae8988-0x0000020f11ae8990 overlaps memory 0x0000020f11ae88f0-0x0000020f11aea830 that was freed here:
+Note: # 0 replace_free    [D:\a\drmemory\drmemory\common\alloc_replace.c:2710] (0x00007ff69db18e30 <drmemorylib.dll+0x28e30>) modid:2
+Note: # 1 main     (0x00007ff70da9175b <main.exe+0x175b>) modid:3
+Note: instruction: mov    (%rax) -> %rax
+	error end
+
+Error #23: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11aeabe0-0x0000020f11aeabe4 4 byte(s)
+# 0 main     (0x00007ff70da9189c <main.exe+0x189c>) modid:3
+Note: @0:02:01.991 in thread 8716
+Note: 0x0000020f11aeabe0-0x0000020f11aeabe4 overlaps memory 0x0000020f11aeabe0-0x0000020f11aeabec that was freed here:
+Note: # 0 replace_free    [D:\a\drmemory\drmemory\common\alloc_replace.c:2710] (0x00007ff69db18e30 <drmemorylib.dll+0x28e30>) modid:2
+Note: # 1 main     (0x00007ff70da9173d <main.exe+0x173d>) modid:3
+Note: instruction: mov    (%rax) -> %edx
+	error end
+
+Error #24: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11ae8988-0x0000020f11ae8990 8 byte(s)
+# 0 main     (0x00007ff70da918cf <main.exe+0x18cf>) modid:3
+Note: @0:02:02.002 in thread 8716
+Note: prev lower malloc:  0x0000020f11ae87d0-0x0000020f11ae88d0
+Note: 0x0000020f11ae8988-0x0000020f11ae8990 overlaps memory 0x0000020f11ae88f0-0x0000020f11aea830 that was freed here:
+Note: # 0 replace_free    [D:\a\drmemory\drmemory\common\alloc_replace.c:2710] (0x00007ff69db18e30 <drmemorylib.dll+0x28e30>) modid:2
+Note: # 1 main     (0x00007ff70da9175b <main.exe+0x175b>) modid:3
+Note: instruction: mov    (%rax) -> %rax
+	error end
+
+Error #25: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11aeabe4-0x0000020f11aeabe8 4 byte(s)
+# 0 main     (0x00007ff70da918d6 <main.exe+0x18d6>) modid:3
+Note: @0:02:02.002 in thread 8716
+Note: 0x0000020f11aeabe4-0x0000020f11aeabe8 overlaps memory 0x0000020f11aeabe0-0x0000020f11aeabec that was freed here:
+Note: # 0 replace_free    [D:\a\drmemory\drmemory\common\alloc_replace.c:2710] (0x00007ff69db18e30 <drmemorylib.dll+0x28e30>) modid:2
+Note: # 1 main     (0x00007ff70da9173d <main.exe+0x173d>) modid:3
+Note: instruction: mov    (%rax) -> %eax
+	error end
+
+Error #26: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11ae8988-0x0000020f11ae8990 8 byte(s)
+# 0 main     (0x00007ff70da91902 <main.exe+0x1902>) modid:3
+Note: @0:02:02.002 in thread 8716
+Note: prev lower malloc:  0x0000020f11ae87d0-0x0000020f11ae88d0
+Note: 0x0000020f11ae8988-0x0000020f11ae8990 overlaps memory 0x0000020f11ae88f0-0x0000020f11aea830 that was freed here:
+Note: # 0 replace_free    [D:\a\drmemory\drmemory\common\alloc_replace.c:2710] (0x00007ff69db18e30 <drmemorylib.dll+0x28e30>) modid:2
+Note: # 1 main     (0x00007ff70da9175b <main.exe+0x175b>) modid:3
+Note: instruction: mov    (%rax) -> %rax
+	error end
+
+Error #27: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11aeabe4-0x0000020f11aeabe8 4 byte(s)
+# 0 main     (0x00007ff70da91909 <main.exe+0x1909>) modid:3
+Note: @0:02:02.002 in thread 8716
+Note: 0x0000020f11aeabe4-0x0000020f11aeabe8 overlaps memory 0x0000020f11aeabe0-0x0000020f11aeabec that was freed here:
+Note: # 0 replace_free    [D:\a\drmemory\drmemory\common\alloc_replace.c:2710] (0x00007ff69db18e30 <drmemorylib.dll+0x28e30>) modid:2
+Note: # 1 main     (0x00007ff70da9173d <main.exe+0x173d>) modid:3
+Note: instruction: mov    (%rax) -> %eax
+	error end
+
+Error #28: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11ae8988-0x0000020f11ae8990 8 byte(s)
+# 0 main     (0x00007ff70da91936 <main.exe+0x1936>) modid:3
+Note: @0:02:02.002 in thread 8716
+Note: prev lower malloc:  0x0000020f11ae87d0-0x0000020f11ae88d0
+Note: 0x0000020f11ae8988-0x0000020f11ae8990 overlaps memory 0x0000020f11ae88f0-0x0000020f11aea830 that was freed here:
+Note: # 0 replace_free    [D:\a\drmemory\drmemory\common\alloc_replace.c:2710] (0x00007ff69db18e30 <drmemorylib.dll+0x28e30>) modid:2
+Note: # 1 main     (0x00007ff70da9175b <main.exe+0x175b>) modid:3
+Note: instruction: mov    (%rax) -> %rax
+	error end
+
+Error #29: UNADDRESSABLE ACCESS of freed memory: reading 0x0000020f11aeabe0-0x0000020f11aeabe4 4 byte(s)
+# 0 main     (0x00007ff70da91939 <main.exe+0x1939>) modid:3
+Note: @0:02:02.002 in thread 8716
+Note: 0x0000020f11aeabe0-0x0000020f11aeabe4 overlaps memory 0x0000020f11aeabe0-0x0000020f11aeabec that was freed here:
+Note: # 0 replace_free    [D:\a\drmemory\drmemory\common\alloc_replace.c:2710] (0x00007ff69db18e30 <drmemorylib.dll+0x28e30>) modid:2
+Note: # 1 main     (0x00007ff70da9173d <main.exe+0x173d>) modid:3
+Note: instruction: mov    (%rax) -> %eax
+	error end
+
+Error #30: UNADDRESSABLE ACCESS: reading 0x0000020f585f9070-0x0000020f585f9074 4 byte(s)
+# 0 main     (0x00007ff70da9194c <main.exe+0x194c>) modid:3
+Note: @0:02:02.008 in thread 8716
+Note: instruction: mov    (%rax) -> %r8d
+	error end
+
+Potential Error #1: UNINITIALIZED READ: reading 0x0000008ec7bfd844-0x0000008ec7bfd848 4 byte(s) within 0x0000008ec7bfd840-0x0000008ec7bfd848
+# 0 system call NtQueryWnfStateNameInformation parameter value #4
+# 1 ntdll.dll!SignalStartWerSvc (0x00007ffc2874d64b <ntdll.dll+0xdd64b>) modid:14
+# 2 ntdll.dll!SendMessageToWERService (0x00007ffc2874d45c <ntdll.dll+0xdd45c>) modid:14
+# 3 ntdll.dll!ReportExceptionInternal (0x00007ffc2874c99b <ntdll.dll+0xdc99b>) modid:14
+# 4 KERNEL32.dll!WerpReportFaultInternal (0x00007ffc284b1e01 <KERNEL32.dll+0x71e01>) modid:13
+# 5 KERNEL32.dll!WerpReportFault (0x00007ffc284b1996 <KERNEL32.dll+0x71996>) modid:13
+# 6 KERNELBASE.dll!UnhandledExceptionFilter (0x00007ffc2632c6f9 <KERNELBASE.dll+0x12c6f9>) modid:9
+# 7 ntdll.dll!RtlUserThreadStart$filt$0 (0x00007ffc287158d8 <ntdll.dll+0xa58d8>) modid:14
+# 8 ntdll.dll!_C_specific_handler (0x00007ffc286fce46 <ntdll.dll+0x8ce46>) modid:14
+# 9 ntdll.dll!RtlpExecuteHandlerForException (0x00007ffc2871296f <ntdll.dll+0xa296f>) modid:14
+#10 ntdll.dll!RtlDispatchException (0x00007ffc286c2554 <ntdll.dll+0x52554>) modid:14
+#11 ntdll.dll!RtlUserThreadStart (0x00007ffc286bcc91 <ntdll.dll+0x4cc91>) modid:14
+Note: @0:02:02.187 in thread 8716
+	error end
+WARNING: unhandled system calls found
+
+Error #31: UNINITIALIZED READ: reading 0x0000008ec7bfe2e0-0x0000008ec7bfe340 96 byte(s) within 0x0000008ec7bfe240-0x0000008ec7bfe440
+# 0 ntdll.dll!RcContinueExit (0x00007ffc28711b20 <ntdll.dll+0xa1b20>) modid:14
+# 1 ntdll.dll!RtlUnwindEx (0x00007ffc286a0b66 <ntdll.dll+0x30b66>) modid:14
+# 2 ntdll.dll!RtlUserThreadStart (0x00007ffc286bcc91 <ntdll.dll+0x4cc91>) modid:14
+Note: @0:02:02.941 in thread 8716
+Note: instruction: fxrstor 0x00000100(%rcx)
+	error end
+
+Error #32: UNINITIALIZED READ: reading 0x0000008ec7bfe0aa-0x0000008ec7bfe0b0 6 byte(s) within 0x0000008ec7bfe0a0-0x0000008ec7bfe0c8
+# 0 ntdll.dll!RcContinueExit (0x00007ffc28711c39 <ntdll.dll+0xa1c39>) modid:14
+# 1 ntdll.dll!RtlUnwindEx (0x00007ffc286a0b66 <ntdll.dll+0x30b66>) modid:14
+# 2 ntdll.dll!RtlUserThreadStart (0x00007ffc286bcc91 <ntdll.dll+0x4cc91>) modid:14
+Note: @0:02:02.941 in thread 8716
+Note: instruction: iret   %rsp (%rsp) -> %rsp
+	error end
+
+Error #33: LEAK 151876 direct bytes 0x0000020d0f6d0030-0x0000020d0f6f5174 + 0 indirect bytes
+# 0 replace_malloc  [D:\a\drmemory\drmemory\common\alloc_replace.c:2580] (0x00007ff69db196d0 <drmemorylib.dll+0x296d0>) modid:2
+# 1 stbi__malloc (0x00007ff70da91dfe <main.exe+0x1dfe>) modid:3
+# 2 stbi__malloc_mad3 (0x00007ff70da92042 <main.exe+0x2042>) modid:3
+# 3 load_jpeg_image (0x00007ff70da9fbfb <main.exe+0xfbfb>) modid:3
+# 4 stbi__jpeg_load (0x00007ff70daa07b9 <main.exe+0x107b9>) modid:3
+# 5 stbi__load_main (0x00007ff70da9238b <main.exe+0x238b>) modid:3
+# 6 stbi__load_and_postprocess_8bit (0x00007ff70da92842 <main.exe+0x2842>) modid:3
+# 7 stbi_load_from_file (0x00007ff70da92c4d <main.exe+0x2c4d>) modid:3
+# 8 stbi_load (0x00007ff70da92bc9 <main.exe+0x2bc9>) modid:3
+# 9 image_load (0x00007ff70daacc85 <main.exe+0x1cc85>) modid:3
+#10 main     (0x00007ff70da91476 <main.exe+0x1476>) modid:3
+	error end
+
+Error #34: LEAK 151876 direct bytes 0x0000020f115d0030-0x0000020f115f5174 + 0 indirect bytes
+# 0 replace_malloc  [D:\a\drmemory\drmemory\common\alloc_replace.c:2580] (0x00007ff69db196d0 <drmemorylib.dll+0x296d0>) modid:2
+# 1 stbi__malloc (0x00007ff70da91dfe <main.exe+0x1dfe>) modid:3
+# 2 stbi__malloc_mad3 (0x00007ff70da92042 <main.exe+0x2042>) modid:3
+# 3 load_jpeg_image (0x00007ff70da9fbfb <main.exe+0xfbfb>) modid:3
+# 4 stbi__jpeg_load (0x00007ff70daa07b9 <main.exe+0x107b9>) modid:3
+# 5 stbi__load_main (0x00007ff70da9238b <main.exe+0x238b>) modid:3
+# 6 stbi__load_and_postprocess_8bit (0x00007ff70da92842 <main.exe+0x2842>) modid:3
+# 7 stbi_load_from_file (0x00007ff70da92c4d <main.exe+0x2c4d>) modid:3
+# 8 stbi_load (0x00007ff70da92bc9 <main.exe+0x2bc9>) modid:3
+# 9 image_load (0x00007ff70daacc85 <main.exe+0x1cc85>) modid:3
+#10 main     (0x00007ff70da9149b <main.exe+0x149b>) modid:3
+	error end
+
+Potential Error #2: LEAK 256 direct bytes 0x0000020f11610690-0x0000020f11610790 + 0 indirect bytes
+# 0 replace_RtlAllocateHeap [D:\a\drmemory\drmemory\common\alloc_replace.c:3772] (0x00007ff69db16780 <drmemorylib.dll+0x26780>) modid:2
+# 1 ucrtbase.dll!malloc_base  (0x00007ffc25f0fde6 <ucrtbase.dll+0xfde6>) modid:7
+# 2 ucrtbase.dll!realloc_base (0x00007ffc25f116b5 <ucrtbase.dll+0x116b5>) modid:7
+# 3 ucrtbase.dll!strtol       (0x00007ffc25f124de <ucrtbase.dll+0x124de>) modid:7
+# 4 ucrtbase.dll!register_onexit_function (0x00007ffc25f12844 <ucrtbase.dll+0x12844>) modid:7
+# 5 ucrtbase.dll!register_onexit_function (0x00007ffc25f126db <ucrtbase.dll+0x126db>) modid:7
+# 6 ucrtbase.dll!register_onexit_function (0x00007ffc25f12690 <ucrtbase.dll+0x12690>) modid:7
+# 7 __do_global_ctors (0x00007ff70daaf062 <main.exe+0x1f062>) modid:3
+# 8 __tmainCRTStartup (0x00007ff70da91362 <main.exe+0x1362>) modid:3
+# 9 .l_start (0x00007ff70da91406 <main.exe+0x1406>) modid:3
+#10 KERNEL32.dll!BaseThreadInitThunk (0x00007ffc28457374 <KERNEL32.dll+0x17374>) modid:13
+	error end
+
+Error #35: POSSIBLE LEAK 16 direct bytes 0x0000020f11a10350-0x0000020f11a10360 + 0 indirect bytes
+# 0 replace_malloc  [D:\a\drmemory\drmemory\common\alloc_replace.c:2580] (0x00007ff69db196d0 <drmemorylib.dll+0x296d0>) modid:2
+# 1 __emutls_get_address (0x00007ff70dab02bc <main.exe+0x202bc>) modid:3
+# 2 stbi__err (0x00007ff70da91dd4 <main.exe+0x1dd4>) modid:3
+# 3 stbi__check_png_header (0x00007ff70daa2147 <main.exe+0x12147>) modid:3
+# 4 stbi__png_test (0x00007ff70daa488d <main.exe+0x1488d>) modid:3
+# 5 stbi__load_main (0x00007ff70da92227 <main.exe+0x2227>) modid:3
+# 6 stbi__load_and_postprocess_8bit (0x00007ff70da92842 <main.exe+0x2842>) modid:3
+# 7 stbi_load_from_file (0x00007ff70da92c4d <main.exe+0x2c4d>) modid:3
+# 8 stbi_load (0x00007ff70da92bc9 <main.exe+0x2bc9>) modid:3
+# 9 image_load (0x00007ff70daacc85 <main.exe+0x1cc85>) modid:3
+#10 main     (0x00007ff70da91476 <main.exe+0x1476>) modid:3
+	error end
+
+Error #36: POSSIBLE LEAK 12 direct bytes 0x0000020f11a2ea20-0x0000020f11a2ea2c + 0 indirect bytes
+# 0 replace_malloc  [D:\a\drmemory\drmemory\common\alloc_replace.c:2580] (0x00007ff69db196d0 <drmemorylib.dll+0x296d0>) modid:2
+# 1 __emutls_get_address (0x00007ff70dab02bc <main.exe+0x202bc>) modid:3
+# 2 stbi__load_and_postprocess_8bit (0x00007ff70da928d3 <main.exe+0x28d3>) modid:3
+# 3 stbi_load_from_file (0x00007ff70da92c4d <main.exe+0x2c4d>) modid:3
+# 4 stbi_load (0x00007ff70da92bc9 <main.exe+0x2bc9>) modid:3
+# 5 image_load (0x00007ff70daacc85 <main.exe+0x1cc85>) modid:3
+# 6 main     (0x00007ff70da91476 <main.exe+0x1476>) modid:3
+	error end
+
+Error #37: LEAK 4000 direct bytes 0x0000020f11a4d0f0-0x0000020f11a4e090 + 0 indirect bytes
+# 0 replace_malloc  [D:\a\drmemory\drmemory\common\alloc_replace.c:2580] (0x00007ff69db196d0 <drmemorylib.dll+0x296d0>) modid:2
+# 1 main     (0x00007ff70da91535 <main.exe+0x1535>) modid:3
+	error end
+
+Error #38: LEAK 4000 direct bytes 0x0000020f11a4e0b0-0x0000020f11a4f050 + 0 indirect bytes
+# 0 replace_malloc  [D:\a\drmemory\drmemory\common\alloc_replace.c:2580] (0x00007ff69db196d0 <drmemorylib.dll+0x296d0>) modid:2
+# 1 main     (0x00007ff70da9154a <main.exe+0x154a>) modid:3
+	error end
+
+Error #39: LEAK 4000 direct bytes 0x0000020f11a4f070-0x0000020f11a50010 + 0 indirect bytes
+# 0 replace_malloc  [D:\a\drmemory\drmemory\common\alloc_replace.c:2580] (0x00007ff69db196d0 <drmemorylib.dll+0x296d0>) modid:2
+# 1 main     (0x00007ff70da91593 <main.exe+0x1593>) modid:3
+	error end
+
+Error #40: LEAK 4000 direct bytes 0x0000020f11a50030-0x0000020f11a50fd0 + 0 indirect bytes
+# 0 replace_malloc  [D:\a\drmemory\drmemory\common\alloc_replace.c:2580] (0x00007ff69db196d0 <drmemorylib.dll+0x296d0>) modid:2
+# 1 main     (0x00007ff70da915a8 <main.exe+0x15a8>) modid:3
+	error end
+
+Error #41: LEAK 8000 direct bytes 0x0000020f11a58030-0x0000020f11a59f70 + 256000 indirect bytes
+# 0 replace_malloc  [D:\a\drmemory\drmemory\common\alloc_replace.c:2580] (0x00007ff69db196d0 <drmemorylib.dll+0x296d0>) modid:2
+# 1 matrix_zeros (0x00007ff70daac163 <main.exe+0x1c163>) modid:3
+# 2 main     (0x00007ff70da9161a <main.exe+0x161a>) modid:3
+	error end
+
+Error #42: LEAK 8000 direct bytes 0x0000020f11aa0490-0x0000020f11aa23d0 + 256000 indirect bytes
+# 0 replace_malloc  [D:\a\drmemory\drmemory\common\alloc_replace.c:2580] (0x00007ff69db196d0 <drmemorylib.dll+0x296d0>) modid:2
+# 1 matrix_zeros (0x00007ff70daac163 <main.exe+0x1c163>) modid:3
+# 2 main     (0x00007ff70da9162b <main.exe+0x162b>) modid:3
+	error end
+
+Error #43: LEAK 151875 direct bytes 0x0000020f11e10030-0x0000020f11e35173 + 0 indirect bytes
+# 0 replace_malloc  [D:\a\drmemory\drmemory\common\alloc_replace.c:2580] (0x00007ff69db196d0 <drmemorylib.dll+0x296d0>) modid:2
+# 1 image_to_gray_vector (0x00007ff70daac822 <main.exe+0x1c822>) modid:3
+# 2 main     (0x00007ff70da914f3 <main.exe+0x14f3>) modid:3
+	error end
+
+Error #44: LEAK 151875 direct bytes 0x0000020f11e40030-0x0000020f11e65173 + 0 indirect bytes
+# 0 replace_malloc  [D:\a\drmemory\drmemory\common\alloc_replace.c:2580] (0x00007ff69db196d0 <drmemorylib.dll+0x296d0>) modid:2
+# 1 image_to_gray_vector (0x00007ff70daac822 <main.exe+0x1c822>) modid:3
+# 2 main     (0x00007ff70da9150c <main.exe+0x150c>) modid:3
+	error end
+
+Error #45: LEAK 303750 direct bytes 0x0000020f11e70030-0x0000020f11eba2b6 + 0 indirect bytes
+# 0 replace_malloc  [D:\a\drmemory\drmemory\common\alloc_replace.c:2580] (0x00007ff69db196d0 <drmemorylib.dll+0x296d0>) modid:2
+# 1 vec_zeros (0x00007ff70daac62d <main.exe+0x1c62d>) modid:3
+# 2 main     (0x00007ff70da9179d <main.exe+0x179d>) modid:3
+	error end
+
+Potential Error #3: HANDLE LEAK: KERNEL handle 0x0000000000000118 and 0 similar handle(s) were opened but not closed:
+# 0 system call NtCreateSemaphore
+# 1 KERNELBASE.dll!CreateSemaphoreExW (0x00007ffc2626954c <KERNELBASE.dll+0x6954c>) modid:9
+# 2 KERNEL32.dll!CreateSemaphoreExA (0x00007ffc2845c137 <KERNEL32.dll+0x1c137>) modid:13
+# 3 KERNEL32.dll!CreateSemaphoreA (0x00007ffc2845c0d6 <KERNEL32.dll+0x1c0d6>) modid:13
+# 4 libwinpthread-1.dll!?                   (0x00007ffc1c9d2130 <libwinpthread-1.dll+0x2130>) modid:4
+# 5 libwinpthread-1.dll!?                   (0x00007ffc1c9d3fb0 <libwinpthread-1.dll+0x3fb0>) modid:4
+# 6 libwinpthread-1.dll!?                   (0x00007ffc1c9d4058 <libwinpthread-1.dll+0x4058>) modid:4
+# 7 libwinpthread-1.dll!?                   (0x00007ffc1c9d40e5 <libwinpthread-1.dll+0x40e5>) modid:4
+# 8 libwinpthread-1.dll!?                   (0x00007ffc1c9d4674 <libwinpthread-1.dll+0x4674>) modid:4
+# 9 libwinpthread-1.dll!?                   (0x00007ffc1c9d663c <libwinpthread-1.dll+0x663c>) modid:4
+#10 emutls_init (0x00007ff70dab0195 <main.exe+0x20195>) modid:3
+#11 libwinpthread-1.dll!?                   (0x00007ffc1c9d6534 <libwinpthread-1.dll+0x6534>) modid:4
+#12 __emutls_get_address (0x00007ff70dab0213 <main.exe+0x20213>) modid:3
+#13 stbi__err (0x00007ff70da91dd4 <main.exe+0x1dd4>) modid:3
+#14 stbi__check_png_header (0x00007ff70daa2147 <main.exe+0x12147>) modid:3
+#15 stbi__png_test (0x00007ff70daa488d <main.exe+0x1488d>) modid:3
+#16 stbi__load_main (0x00007ff70da92227 <main.exe+0x2227>) modid:3
+#17 stbi__load_and_postprocess_8bit (0x00007ff70da92842 <main.exe+0x2842>) modid:3
+#18 stbi_load_from_file (0x00007ff70da92c4d <main.exe+0x2c4d>) modid:3
+#19 stbi_load (0x00007ff70da92bc9 <main.exe+0x2bc9>) modid:3
+Note: @0:02:03.112 in thread 8716
+	error end
+
+Potential Error #4: HANDLE LEAK: KERNEL handle 0x000000000000011c and 0 similar handle(s) were opened but not closed:
+# 0 system call NtCreateEvent
+# 1 KERNELBASE.dll!CreateEventA   (0x00007ffc2625897f <KERNELBASE.dll+0x5897f>) modid:9
+# 2 libwinpthread-1.dll!?                   (0x00007ffc1c9d602c <libwinpthread-1.dll+0x602c>) modid:4
+# 3 libwinpthread-1.dll!?                   (0x00007ffc1c9d65f5 <libwinpthread-1.dll+0x65f5>) modid:4
+# 4 __emutls_get_address (0x00007ff70dab0213 <main.exe+0x20213>) modid:3
+# 5 stbi__err (0x00007ff70da91dd4 <main.exe+0x1dd4>) modid:3
+# 6 stbi__check_png_header (0x00007ff70daa2147 <main.exe+0x12147>) modid:3
+# 7 stbi__png_test (0x00007ff70daa488d <main.exe+0x1488d>) modid:3
+# 8 stbi__load_main (0x00007ff70da92227 <main.exe+0x2227>) modid:3
+# 9 stbi__load_and_postprocess_8bit (0x00007ff70da92842 <main.exe+0x2842>) modid:3
+#10 stbi_load_from_file (0x00007ff70da92c4d <main.exe+0x2c4d>) modid:3
+#11 stbi_load (0x00007ff70da92bc9 <main.exe+0x2bc9>) modid:3
+#12 image_load (0x00007ff70daacc85 <main.exe+0x1cc85>) modid:3
+#13 main     (0x00007ff70da91476 <main.exe+0x1476>) modid:3
+Note: @0:02:03.112 in thread 8716
+	error end
+
+Potential Error #5: HANDLE LEAK: KERNEL handle 0x0000000000000120 and 0 similar handle(s) were opened but not closed:
+# 0 system call NtDuplicateObject
+# 1 KERNELBASE.dll!DuplicateHandle (0x00007ffc2625483c <KERNELBASE.dll+0x5483c>) modid:9
+# 2 libwinpthread-1.dll!?                   (0x00007ffc1c9d60a6 <libwinpthread-1.dll+0x60a6>) modid:4
+# 3 libwinpthread-1.dll!?                   (0x00007ffc1c9d65f5 <libwinpthread-1.dll+0x65f5>) modid:4
+# 4 __emutls_get_address (0x00007ff70dab0213 <main.exe+0x20213>) modid:3
+# 5 stbi__err (0x00007ff70da91dd4 <main.exe+0x1dd4>) modid:3
+# 6 stbi__check_png_header (0x00007ff70daa2147 <main.exe+0x12147>) modid:3
+# 7 stbi__png_test (0x00007ff70daa488d <main.exe+0x1488d>) modid:3
+# 8 stbi__load_main (0x00007ff70da92227 <main.exe+0x2227>) modid:3
+# 9 stbi__load_and_postprocess_8bit (0x00007ff70da92842 <main.exe+0x2842>) modid:3
+#10 stbi_load_from_file (0x00007ff70da92c4d <main.exe+0x2c4d>) modid:3
+#11 stbi_load (0x00007ff70da92bc9 <main.exe+0x2bc9>) modid:3
+#12 image_load (0x00007ff70daacc85 <main.exe+0x1cc85>) modid:3
+#13 main     (0x00007ff70da91476 <main.exe+0x1476>) modid:3
+Note: @0:02:03.112 in thread 8716
+	error end
+
+Potential Error #6: HANDLE LEAK: KERNEL handle 0x0000000000000128 and 0 similar handle(s) were opened but not closed:
+# 0 system call NtCreateSemaphore
+# 1 KERNELBASE.dll!CreateSemaphoreExW (0x00007ffc2626954c <KERNELBASE.dll+0x6954c>) modid:9
+# 2 KERNEL32.dll!CreateSemaphoreExA (0x00007ffc2845c137 <KERNEL32.dll+0x1c137>) modid:13
+# 3 KERNEL32.dll!CreateSemaphoreA (0x00007ffc2845c0d6 <KERNEL32.dll+0x1c0d6>) modid:13
+# 4 libwinpthread-1.dll!?                   (0x00007ffc1c9d2146 <libwinpthread-1.dll+0x2146>) modid:4
+# 5 libwinpthread-1.dll!?                   (0x00007ffc1c9d3fb0 <libwinpthread-1.dll+0x3fb0>) modid:4
+# 6 libwinpthread-1.dll!?                   (0x00007ffc1c9d4058 <libwinpthread-1.dll+0x4058>) modid:4
+# 7 libwinpthread-1.dll!?                   (0x00007ffc1c9d40e5 <libwinpthread-1.dll+0x40e5>) modid:4
+# 8 libwinpthread-1.dll!?                   (0x00007ffc1c9d4674 <libwinpthread-1.dll+0x4674>) modid:4
+# 9 libwinpthread-1.dll!?                   (0x00007ffc1c9d663c <libwinpthread-1.dll+0x663c>) modid:4
+#10 emutls_init (0x00007ff70dab0195 <main.exe+0x20195>) modid:3
+#11 libwinpthread-1.dll!?                   (0x00007ffc1c9d6534 <libwinpthread-1.dll+0x6534>) modid:4
+#12 __emutls_get_address (0x00007ff70dab0213 <main.exe+0x20213>) modid:3
+#13 stbi__err (0x00007ff70da91dd4 <main.exe+0x1dd4>) modid:3
+#14 stbi__check_png_header (0x00007ff70daa2147 <main.exe+0x12147>) modid:3
+#15 stbi__png_test (0x00007ff70daa488d <main.exe+0x1488d>) modid:3
+#16 stbi__load_main (0x00007ff70da92227 <main.exe+0x2227>) modid:3
+#17 stbi__load_and_postprocess_8bit (0x00007ff70da92842 <main.exe+0x2842>) modid:3
+#18 stbi_load_from_file (0x00007ff70da92c4d <main.exe+0x2c4d>) modid:3
+#19 stbi_load (0x00007ff70da92bc9 <main.exe+0x2bc9>) modid:3
+Note: @0:02:03.112 in thread 8716
+	error end
+
+DUPLICATE ERROR COUNTS:
+	Error #   1:      2
+	Error #   2:   5400
+	Error #   3:   2700
+	Error #   4:   5400
+	Error #   5:   2700
+	Error #   6: 185600
+	Error #   7: 185600
+	Error #   8: 185600
+	Error #   9: 185600
+	Error #  10: 189952
+	Error #  11: 189952
+	Error #  12: 189952
+	Error #  13: 189952
+	Error #  14:     20
+	Error #  15:     20
+	Error #  31:      2
+	Error #  32:      3
+
+SUPPRESSIONS USED:
+
+ERRORS FOUND:
+     22 unique, 16257 total unaddressable access(es)
+     10 unique, 1502213 total uninitialized access(es)
+      0 unique,     0 total invalid heap argument(s)
+      0 unique,     0 total GDI usage error(s)
+      0 unique,     0 total handle leak(s)
+      0 unique,     0 total warning(s)
+     11 unique,    11 total, 1455252 byte(s) of leak(s)
+      2 unique,     2 total,     28 byte(s) of possible leak(s)
+ERRORS IGNORED:
+      5 potential error(s) (suspected false positives)
+         (details: C:\Users\Workstation\Documents\rubenh\CUDAvision\tests\logs\drmemory\DrMemory-main.exe.13040.000\potential_errors.txt)
+      1 potential leak(s) (suspected false positives)
+         (details: C:\Users\Workstation\Documents\rubenh\CUDAvision\tests\logs\drmemory\DrMemory-main.exe.13040.000\potential_errors.txt)
+    243 ignored assumed-innocuous system leak(s)
+     19 unique,    19 total,   6911 byte(s) of still-reachable allocation(s)
+         (re-run with "-show_reachable" for details)
+Details: C:\Users\Workstation\Documents\rubenh\CUDAvision\tests\logs\drmemory\DrMemory-main.exe.13040.000\results.txt
+
+DUPLICATE POTENTIAL ERROR COUNTS:
+
+POTENTIAL ERRORS FOUND:
+      0 unique,     0 total potential unaddressable access(es)
+      1 unique,     1 total potential uninitialized access(es)
+      0 unique,     0 total potential invalid heap argument(s)
+      0 unique,     0 total potential GDI usage error(s)
+      4 unique,     4 total potential handle leak(s)
+      0 unique,     0 total potential warning(s)
+      1 unique,     1 total,    256 byte(s) of potential leak(s)
+      0 unique,     0 total,      0 byte(s) of potential possible leak(s)
+Details: C:\Users\Workstation\Documents\rubenh\CUDAvision\tests\logs\drmemory\DrMemory-main.exe.13040.000\potential_errors.txt
+Exiting @0:02:03.158 in thread 8716
+LOG END
