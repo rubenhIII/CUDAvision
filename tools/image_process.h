@@ -15,18 +15,35 @@
  */
 unsigned char* image_padding(unsigned char *image, int width, int height, int pad);
 
+/*  Convolucion
+ 
+  param out     Buffer de salida  (width * height floats)
+  param in      Buffer de entrada (width * height floats)
+  param width   Ancho en píxeles
+  param height  Alto en píxeles
+  param kernel  Kernel aplanado row-major, tamaño (2*half_k+1)²
+  param half_k  Semitamaño del kernel (1 → 3×3, 2 → 5×5, …)
+  param scale   Divisor de la suma acumulada (0 = sin división)
+ */
+void convolve_float(float *out, const float *in,
+                    int width, int height,
+                    const float *kernel, int half_k, float scale);
+
+
 //Filtro sobel
 
 /*
   sobel_filter
  
-  param image   Vector RGB de entrada  (width * height * 3 bytes)
-  param width   Ancho en pixeles
-  param height  Alto en pixeles
-  return        Vector RGB de width * height * 3 bytes con los bordes detectados,
-                 o NULL en caso de error.
+   param Ix      Gradiente horizontal (width * height floats)
+   param Iy      Gradiente vertical   (width * height floats)
+   param in      Buffer de entrada    (width * height floats)
+   param width   Ancho en píxeles
+   param height  Alto en píxeles
  */
-unsigned char* sobel_filter(unsigned char *image, int width, int height);
+
+//Float -> float
+void sobel_filter(float *Ix, float *Iy, const float *in, int width, int height);
 
 //Filtro Gaussiano
 
@@ -36,14 +53,16 @@ unsigned char* sobel_filter(unsigned char *image, int width, int height);
     [ 1  2  1 ]
     [ 2  4  2 ]  /  16
     [ 1  2  1 ]
- 
-  param image   Vector RGB de entrada  (width * height * 3 bytes)
-  param width   Ancho en pixeles
-  param height  Alto en pixeles
-  return        Vector RGB de width * height * 3 bytes con la imagen suavizada,
-                 o NULL en caso de error.
+  
+  param out     Buffer de salida  (width * height floats)
+  param in      Buffer de entrada (width * height floats)
+  param width   Ancho en píxeles
+  param height  Alto en píxeles
+   
 */
-unsigned char* gaussian_filter(unsigned char *image, int width, int height);
+
+//Floar -> float
+void gaussian_filter(float *out, const float *in, int width, int height);
 
 
 #endif 

@@ -1,4 +1,5 @@
 #include "harris.h"
+#include "image_process.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -7,70 +8,7 @@
 
 #define IDX(x,y,w) ((y)*(w)+(x))
 
-// -----------------------------
-// Gaussian blur (kernel 3x3)
-// -----------------------------
-void gaussian_blur(float* out, float* in, int w, int h)
-{
-    float kernel[3][3] = {
-        {1, 2, 1},
-        {2, 4, 2},
-        {1, 2, 1}
-    };
 
-    for (int y = 1; y < h-1; y++) {
-        for (int x = 1; x < w-1; x++) {
-
-            float sum = 0.0;
-            float norm = 0.0;
-
-            for (int ky = -1; ky <= 1; ky++) {
-                for (int kx = -1; kx <= 1; kx++) {
-
-                    float k = kernel[ky+1][kx+1];
-                    sum += in[IDX(x+kx,y+ky,w)] * k;
-                    norm += k;
-                }
-            }
-
-            out[IDX(x,y,w)] = sum / norm;
-        }
-    }
-}
-
-// -----------------------------
-// Sobel
-// -----------------------------
-void sobel(float* Ix, float* Iy, float* img, int w, int h)
-{
-    int Gx[3][3] = {
-        {-1,0,1},{-2,0,2},{-1,0,1}
-    };
-
-    int Gy[3][3] = {
-        {-1,-2,-1},{0,0,0},{1,2,1}
-    };
-
-    for (int y = 1; y < h-1; y++) {
-        for (int x = 1; x < w-1; x++) {
-
-            float sx = 0, sy = 0;
-
-            for (int ky=-1; ky<=1; ky++) {
-                for (int kx=-1; kx<=1; kx++) {
-
-                    float pixel = img[IDX(x+kx,y+ky,w)];
-
-                    sx += pixel * Gx[ky+1][kx+1];
-                    sy += pixel * Gy[ky+1][kx+1];
-                }
-            }
-
-            Ix[IDX(x,y,w)] = sx;
-            Iy[IDX(x,y,w)] = sy;
-        }
-    }
-}
 
 // -----------------------------
 // Non-Maximum Suppression
@@ -145,10 +83,10 @@ void harris_detect(unsigned char* gray, int width, int height, float threshold, 
     }
 
     // 1. Gaussian blur
-    gaussian_blur(blur, img, width, height);
+    gaussian_filter(blur, img, width, height);
 
     // 2. Gradientes
-    sobel(Ix, Iy, blur, width, height);
+    sobel_filter(Ix, Iy, blur, width, height);
 
     // 3. Productos
     for (int i = 0; i < size; i++) {
@@ -157,10 +95,10 @@ void harris_detect(unsigned char* gray, int width, int height, float threshold, 
         Ixy[i] = Ix[i]*Iy[i];
     }
 
-    // 4. Blur otra vez (estructura tensor)
-    gaussian_blur(Sxx, Ixx, width, height);
-    gaussian_blur(Syy, Iyy, width, height);
-    gaussian_blur(Sxy, Ixy, width, height);
+    // 4. Blur/filter otra vez (estructura tensor)
+    gaussian_filter(Sxx, Ixx, width, height);
+    gaussian_filter(Syy, Iyy, width, height);
+    gaussian_filter(Sxy, Ixy, width, height);
 
     // 5. Harris response
     for (int i = 0; i < size; i++) {
