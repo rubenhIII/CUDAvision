@@ -26,8 +26,8 @@ unsigned char* image_load(const char* filename, int *width, int *height, int *ch
 void image_show(unsigned char *rgb_vector, int width, int height);
 unsigned int* image_hist(unsigned char *gray_image, int width, int height);
 float* image_hist_norm(unsigned char *gray_image, int width, int height);
-float hist_cdf(float *hist_norm, unsigned int n, unsigned int m);
-float hist_mean(float *hist_norm, unsigned int n, unsigned int m);
+float hist_cdf(float *hist_norm, unsigned int m, unsigned int n);
+float hist_mean(float *hist_norm, unsigned int m, unsigned int n);
 unsigned int otsu_thresholding(float *hist_norm);
 void image_threshold(unsigned int th, unsigned char*gray_image, int width, int height);
 void draw_point(unsigned char *gray_image, int width, int height, int x, int y, Color color);
