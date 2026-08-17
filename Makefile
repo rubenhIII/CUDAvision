@@ -1,8 +1,12 @@
 PLATFORM ?= linux
+CUDA ?= n
 
 CC = gcc
 SRC = main.c tools/image_tools.c tools/harris.c tools/image_descriptors.c tools/image_process.c
 OUT = main
+
+NVCC = nvcc
+SRC_CU = tools_cuda/example.cu
 
 LOG_DIR := tests/logs/cppcheck
 LOG_FILE := $(LOG_DIR)/cppcheck.log
@@ -19,6 +23,14 @@ ifeq ($(PLATFORM), windows)
 endif
 
 all:
+	$(CC) -g $(SRC) $(CFLAGS) $(LDFLAGS) $(LIBS) -o $(OUT)
+
+cuda:
+	NVCC_ARCH = -arch=sm_75
+    NVCCFLAGS = -Xcompiler -std=c11 $(NVCC_ARCH)
+    LIBS += -lcudart
+
+	$(NVCC) -g $(NVCCFLAGS) -c $(SRC_CU)
 	$(CC) -g $(SRC) $(CFLAGS) $(LDFLAGS) $(LIBS) -o $(OUT)
 
 .PHONY: check
