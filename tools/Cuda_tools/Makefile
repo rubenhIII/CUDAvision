@@ -1,7 +1,7 @@
 PLATFORM ?= linux
 
 CC = nvcc
-SRC = prueba.cpp image_process_cuda.cu
+SRC = prueba.cpp image_process_cuda.cu harris_cuda.cu
 
 ifeq ($(PLATFORM), linux)
     OUT = prueba
