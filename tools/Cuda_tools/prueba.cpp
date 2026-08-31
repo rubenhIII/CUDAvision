@@ -69,16 +69,16 @@ int main()
     // Liberar la imagen original leída por STB
     stbi_image_free(imagen);
 
-    // 2. Filtro Gaussiano
-    printf("Aplicando filtro Gaussiano\n");
+    // Filtro Gaussiano
+    /*printf("Aplicando filtro Gaussiano\n");
     gaussian_filter_cuda(
         gauss,
         entrada,
         ancho,
         altura
-    );
+    );*/
 
-    // 3. Filtro Sobel
+    /* Filtro Sobel
     printf("Aplicando filtro Sobel\n");
     sobel_filter_cuda(
         Ix,
@@ -86,7 +86,7 @@ int main()
         entrada,
         ancho,
         altura
-    );
+    );*/
 
     // 4. Detector de Esquinas Harris
     printf("Aplicando Harris\n");
@@ -120,12 +120,16 @@ int main()
         printf("Error reservando memoria para los puntos Harris\n");
     }
 
-    // 5. Convertir resultados de Gauss y Sobel a unsigned char para exportar
+
+
+    //CODIGO PARA MOSTRAR IMAGENES SOBEL Y GAUSS
+    /* Convertir resultados de Gauss y Sobel a unsigned char para imprimit
     unsigned char *gauss_img   = (unsigned char*) malloc(cantidad);
     unsigned char *sobel_x_img = (unsigned char*) malloc(cantidad);
     unsigned char *sobel_y_img = (unsigned char*) malloc(cantidad);
+    */
 
-    if (gauss_img == NULL || sobel_x_img == NULL || sobel_y_img == NULL)
+    /*if (gauss_img == NULL || sobel_x_img == NULL || sobel_y_img == NULL)
     {
         printf("Error reservando memoria para imagenes de salida\n");
 
@@ -142,7 +146,7 @@ int main()
 
         return 1;
     }
-
+ 
     for (int i = 0; i < cantidad; i++)
     {
         // Gauss
@@ -163,7 +167,7 @@ int main()
         if (valor > 255) valor = 255;
         sobel_y_img[i] = (unsigned char)valor;
     }
-
+*/
     // 6. Guardar imágenes generadas
 
     //No ocupo lo de sobel o gauss
@@ -207,7 +211,7 @@ int main()
 
     printf("Fin.\n");
 
-    // 7. Liberar memoria
+    
     free(entrada);
     free(gauss);
     free(Ix);
@@ -215,9 +219,12 @@ int main()
     free(rgb);
     free(points_x);
     free(points_y);
-    free(gauss_img);
+
+
+    //Esto es para el codigo comentado
+    /*free(gauss_img);
     free(sobel_x_img);
-    free(sobel_y_img);
+    free(sobel_y_img);*/
 
     return 0;
 }
