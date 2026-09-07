@@ -18,10 +18,8 @@
         } \
     } while (0)
 
-// -----------------------------------------------------------
 // Números aleatorios (se quedan en host: rand() es secuencial
 // y esto solo se ejecuta una vez para generar el patrón BRIEF)
-// -----------------------------------------------------------
 
 // Genera un número uniforme en (0,1)
 double uniform()
@@ -60,12 +58,12 @@ int sample_pattern(double sigma, double **norm_x, double **norm_y, int descripto
     return 0;
 }
 
-// -----------------------------------------------------------
-// Utilidades: __host__ __device__ para poder usarlas tanto
-// desde código host como dentro de los kernels CUDA
-// -----------------------------------------------------------
+/*
+    Utilidades: __host__ __device__ para poder usarlas tanto
+    desde código host como dentro de los kernels CUDA
+*/
 
-// Genera coordenada con sigma
+//Genera coordenada con sigma
 __host__ __device__ int sample_point(double val, int center_coord, int patch_size, int limit)
 {
     int half_patch = (int) patch_size / 2;
@@ -91,10 +89,8 @@ __host__ __device__ int binary_test(unsigned char *gray_image, int width, int he
     return result;
 }
 
-// -----------------------------------------------------------
 // Kernel: BRIEF descriptor
 // Un hilo por cada (punto p, bit d) del descriptor
-// -----------------------------------------------------------
 __global__ void k_brief_descriptor(
     const unsigned char* gray, int width, int height,
     unsigned char* descriptors_flat, int descriptor_len,
@@ -233,11 +229,10 @@ void brief_descriptor(unsigned char * gray, int width, int height, unsigned char
     free(h_desc_flat);
 }
 
-// -----------------------------------------------------------
 // Kernel: Hamming matching
 // Un hilo por cada punto i de la primera imagen; recorre todos
 // los j de la segunda (misma estructura que el for anidado original)
-// -----------------------------------------------------------
+
 __global__ void k_hamming(
     const unsigned char* descriptors_flat,
     const unsigned char* descriptors2_flat,
