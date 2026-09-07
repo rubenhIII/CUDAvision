@@ -11,7 +11,7 @@
 #include "image_process_cuda.h"
 #include "harris_cuda.h"
 #include "image_descriptor_cuda.h"
-#include "match_visualization.h"
+#include "match_visualization.c"
 
 
 // Traslada una imagen hacia abajo
