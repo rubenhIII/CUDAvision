@@ -249,9 +249,7 @@ void crear_comparacion_matches(
         );
     }
 
-    // --------------------------------------------------
     // Guardar imagen de comparacion
-    // --------------------------------------------------
 
     if (!stbi_write_png(
         "images/comparacion_matches.png",
