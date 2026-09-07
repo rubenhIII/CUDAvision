@@ -10,8 +10,6 @@
 
 #define IDX(x,y,w) ((y)*(w)+(x))
 
-
-
 // Kernel: convertir a float (usar solo canal R)
 
 __global__ void k_to_float(const unsigned char* gray, float* img, int size)
@@ -21,7 +19,6 @@ __global__ void k_to_float(const unsigned char* gray, float* img, int size)
         img[i] = gray[i*3];
     }
 }
-
 
 // Kernel: productos Ixx, Iyy, Ixy
 
@@ -34,7 +31,6 @@ __global__ void k_products(const float* Ix, const float* Iy, float* Ixx, float* 
         Ixy[i] = Ix[i]*Iy[i];
     }
 }
-
 
 // Kernel: Harris response
 __global__ void k_harris_response(const float* Sxx, const float* Syy, const float* Sxy, float* R, int size)
@@ -63,7 +59,7 @@ __global__ void k_harris_response(const float* Sxx, const float* Syy, const floa
  (se mantiene en cpu: es secuencial por la salida temprana en max_points
   y por el llenado ordenado de points_x/points_y)
 */ 
-void non_max_suppression(float* R, int w, int h, unsigned char* out, float threshold, int max_points, int *points_x, int *points_y)
+int non_max_suppression(float* R, int w, int h, unsigned char* out, float threshold, int max_points, int *points_x, int *points_y)
 {
     int p = 0;
 
@@ -108,7 +104,7 @@ void non_max_suppression(float* R, int w, int h, unsigned char* out, float thres
 
                 if (p >= max_points) {
                     printf("Se alcanzo el maximo de %d esquinas.\n", max_points);
-                    return;
+                    return p;
                 }
             }
         }
@@ -116,13 +112,27 @@ void non_max_suppression(float* R, int w, int h, unsigned char* out, float thres
 
     // Se muestra cuantas esquinas se encontraron antes de terminar el recorrido.
     printf("Esquinas Harris encontradas: %d\n", p);
+
+    return p;
 }
 
 
 // Harris 
 
-void harris_detect(unsigned char* gray, int width, int height, float threshold, int max_points, int *points_x, int *points_y)
+int harris_detect(unsigned char* gray, int width, int height, float threshold, int max_points, int *points_x, int *points_y, unsigned char* imagen_gris_brief)
 {
+    if (!gray ||
+        !points_x ||
+        !points_y ||
+        !imagen_gris_brief ||
+        width <= 0 ||
+        height <= 0 ||
+        max_points <= 0)
+    {
+        fprintf(stderr, "Error: parametros invalidos en harris_detect.\n");
+        return 0;
+    }
+
     int size = width * height;
 
     // Guardamos memoria en cpu para sobel, gauss y non max
@@ -141,6 +151,29 @@ void harris_detect(unsigned char* gray, int width, int height, float threshold, 
     float* h_Sxy = (float*) malloc(sizeof(float)*size);
 
     float* h_R = (float*) malloc(sizeof(float)*size);
+
+    if (!h_img || !h_blur ||
+        !h_Ix || !h_Iy ||
+        !h_Ixx || !h_Iyy || !h_Ixy ||
+        !h_Sxx || !h_Syy || !h_Sxy ||
+        !h_R)
+    {
+        fprintf(stderr, "Error reservando memoria para Harris.\n");
+
+        if (h_img) free(h_img);
+        if (h_blur) free(h_blur);
+        if (h_Ix) free(h_Ix);
+        if (h_Iy) free(h_Iy);
+        if (h_Ixx) free(h_Ixx);
+        if (h_Iyy) free(h_Iyy);
+        if (h_Ixy) free(h_Ixy);
+        if (h_Sxx) free(h_Sxx);
+        if (h_Syy) free(h_Syy);
+        if (h_Sxy) free(h_Sxy);
+        if (h_R) free(h_R);
+
+        return 0;
+    }
 
     // Lo mismo pero ahora para gpu
     unsigned char* d_gray;
@@ -226,8 +259,28 @@ void harris_detect(unsigned char* gray, int width, int height, float threshold, 
     printf("Harris R: min = %f, max = %f\n", minR, maxR);
     printf("Harris threshold: %f\n", threshold);
 
+    // Copiar la imagen en escala de gris para BRIEF
+    if (imagen_gris_brief != NULL)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            unsigned char valor = (unsigned char)h_img[i];
+
+            imagen_gris_brief[i * 3] = valor;
+            imagen_gris_brief[i * 3 + 1] = valor;
+            imagen_gris_brief[i * 3 + 2] = valor;
+
+            gray[i * 3] = valor;
+            gray[i * 3 + 1] = valor;
+            gray[i * 3 + 2] = valor;
+        }
+    }
+
     //  6. NMS + dibujar esquinas (cpu)
-    non_max_suppression(h_R, width, height, gray, threshold, max_points, points_x, points_y);
+    int num_points = non_max_suppression(
+        h_R, width, height, gray, threshold,
+        max_points, points_x, points_y
+    );
 
     // liberamos memoria (gpu)
     cudaFree(d_gray); cudaFree(d_img);
@@ -242,4 +295,6 @@ void harris_detect(unsigned char* gray, int width, int height, float threshold, 
     free(h_Ixx); free(h_Iyy); free(h_Ixy);
     free(h_Sxx); free(h_Syy); free(h_Sxy);
     free(h_R);
+
+    return num_points;
 }
